@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dragon Jar · โอ่งมังกรราชบุรี</title>
+<meta name="description" content="Dragon Jar เหยือกมังกรทำมือจากดินราชบุรี ถ้วยไอติมลายมังกร เวิร์กช็อปแม่เหล็ก และแหล่งเรียนรู้โอ่งมังกร · โครงงาน GE012 LOCAL HERO กลุ่มเสี่ยฮิมสั่งลุย">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dragon Jar · โอ่งมังกรราชบุรี">
+<meta property="og:description" content="เหยือกมังกรทำมือจากดินราชบุรี ถ้วยไอติมลายมังกร และแหล่งเรียนรู้ที่พาไปดูช่างปั้นตัวจริง">
+<meta property="og:url" content="https://sirapatkhamsom.github.io/Ge12SiaHimSanglui/">
+<meta property="og:image" content="https://sirapatkhamsom.github.io/Ge12SiaHimSanglui/img/dragon-jug-set.jpg">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="960">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sirapatkhamsom.github.io/Ge12SiaHimSanglui/img/dragon-jug-set.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chonburi&family=Anuphan:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+/* set language and theme before paint so nothing flickers */
+(function(){
+  var r=document.documentElement, l=null, t=null;
+  try{l=new URLSearchParams(location.search).get('lang')}catch(e){}
+  if(l!=='th'&&l!=='en'){try{l=localStorage.getItem('jar-lang')}catch(e){}}
+  if(l==='th'||l==='en') r.setAttribute('lang',l);
+  try{t=localStorage.getItem('jar-theme')}catch(e){}
+  if(t==='light'||t==='dark') r.setAttribute('data-theme',t);
+  r.classList.add('js');
+})();
+</script>
+<style>
+/* Layout: glaze-dark long scroll. Hero = brand + jug photo. Products: jug spread, cup coverflow, magnet poster, 4-station trip. BMC = classic 5+2 canvas grid. */
+:root{
+  --bg:#1c1410;        /* glaze brown, near black */
+  --surface:#271c16;   /* fired body */
+  --raised:#33251d;
+  --fg:#f2e7d8;        /* unglazed clay rim */
+  --muted:#bba893;
+  --gold:#dca847;      /* dragon relief highlight */
+  --clay:#c0603a;      /* raw Ratchaburi iron clay */
+  --celadon:#93b8a4;
+  --cream:#efe1cf;     /* product photo backdrop */
+  --line:rgba(242,231,216,.14);
+  --font-display:"Chonburi","Noto Serif Thai",Georgia,serif;
+  --font-body:"Anuphan","IBM Plex Sans Thai","Leelawadee UI","Tahoma",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --s1:.5rem;--s2:1rem;--s3:1.5rem;--s4:2.5rem;--s5:4rem;--s6:6rem;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f2ece3;--surface:#e8dfd2;--raised:#ded2c2;--fg:#2a1a12;--muted:#6a5445;
+    --gold:#94660f;--clay:#9e4423;--celadon:#46705b;--line:rgba(42,26,18,.16);color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f2ece3;--surface:#e8dfd2;--raised:#ded2c2;--fg:#2a1a12;--muted:#6a5445;
+  --gold:#94660f;--clay:#9e4423;--celadon:#46705b;--line:rgba(42,26,18,.16);color-scheme:light;
+}
+/* language switching: every bilingual text has a .th and an .en twin */
+html[lang="th"] .en, html[lang="en"] .th{display:none!important}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:1.0625rem;line-height:1.75;font-weight:400;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--gold)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.35;text-wrap:balance;margin:0}
+p{margin:0}
+img{max-width:100%}
+.label{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* scroll reveal (only when JS runs, so content is never hidden without it) */
+html.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+html.js .reveal.in{opacity:1;transform:none}
+
+/* nav: brand + tools + menu button; sections live in a drop-down panel so the bar never overflows */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:var(--s2);padding-block:.7rem}
+.brand{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--font-display);font-size:1.05rem;color:var(--fg);text-decoration:none;white-space:nowrap}
+.logo-slot{display:inline-grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:50%;border:1.5px dashed var(--gold);color:var(--gold);font-family:var(--font-mono);font-size:.5rem;letter-spacing:.06em;flex:none}
+.now{font-size:.85rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;padding-left:var(--s2);border-left:1px solid var(--line);margin-left:.4rem}
+.now b{font-family:var(--font-mono);font-weight:400;color:var(--gold);margin-right:.4rem}
+.menu-btn{background:var(--gold);color:var(--bg);border-color:transparent;font-weight:500}
+.menu-btn:hover{border-color:transparent;filter:brightness(1.08)}
+.burger{position:relative;width:1rem;height:.7rem}
+.burger i{position:absolute;left:0;right:0;height:2px;border-radius:2px;background:currentColor;transition:transform .45s var(--ease),opacity .3s,top .45s var(--ease)}
+.burger i:nth-child(1){top:0}.burger i:nth-child(2){top:calc(50% - 1px)}.burger i:nth-child(3){top:calc(100% - 2px)}
+.menu-open .burger i:nth-child(1){top:calc(50% - 1px);transform:rotate(45deg)}
+.menu-open .burger i:nth-child(2){opacity:0}
+.menu-open .burger i:nth-child(3){top:calc(50% - 1px);transform:rotate(-45deg)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:linear-gradient(90deg,var(--clay),var(--gold));transform-origin:left;transform:scaleX(var(--sp,0))}
+.menu-panel{position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);
+  clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .6s var(--ease),visibility 0s .6s}
+.menu-open .menu-panel{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .6s var(--ease),visibility 0s}
+.menu-panel ol{list-style:none;margin:0 auto;padding:var(--s3) 0 var(--s4);display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+.menu-panel a{display:grid;gap:.15rem;padding:.8rem .9rem;border-radius:12px;text-decoration:none;color:var(--fg);border:1px solid transparent;
+  opacity:0;transform:translateY(-10px);transition:opacity .4s var(--ease),transform .4s var(--ease),background .3s,border-color .3s}
+.menu-open .menu-panel a{opacity:1;transform:none}
+.menu-panel a:hover{background:var(--surface)}
+.menu-panel a.cur{border-color:var(--gold);background:var(--surface)}
+.menu-panel .no{font-family:var(--font-mono);font-size:.72rem;color:var(--gold);letter-spacing:.08em}
+.menu-panel .nm{font-family:var(--font-display);font-size:1.05rem;line-height:1.35}
+.menu-panel .ds{font-size:.78rem;color:var(--muted);font-family:var(--font-mono);letter-spacing:.04em}
+@media (max-width:900px){.menu-panel ol{grid-template-columns:repeat(2,1fr)}.now{display:none}}
+.tools{display:flex;gap:.5rem;margin-left:auto;flex:none}
+.pill{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font-family:var(--font-body);font-size:.85rem;cursor:pointer;white-space:nowrap}
+.pill:hover{border-color:var(--gold)}
+.theme-btn .dot{width:.85rem;height:.85rem;border-radius:50%;background:linear-gradient(90deg,var(--fg) 50%,var(--bg) 50%);border:1px solid var(--muted)}
+.lang{display:inline-flex;padding:3px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.lang button{border:0;background:transparent;color:var(--muted);font-family:var(--font-mono);font-size:.78rem;letter-spacing:.06em;padding:.3rem .7rem;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
+.lang button[aria-pressed="true"]{background:var(--gold);color:var(--bg)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s4);align-items:center;padding-block:var(--s5)}
+.hero-brand{display:flex;align-items:center;gap:var(--s2);margin-top:var(--s2)}
+.hero-brand .logo-slot{width:4.5rem;height:4.5rem;font-size:.7rem}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.15;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .tag{margin-top:var(--s3);font-family:var(--font-display);font-size:clamp(1.2rem,2.4vw,1.5rem);line-height:1.5;color:var(--fg);max-width:24ch}
+.hero .lead{margin-top:var(--s2);max-width:54ch;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
+.btn{display:inline-block;padding:.7rem 1.4rem;border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;transition:transform .3s var(--ease),filter .3s}
+.btn.primary{background:var(--gold);color:var(--bg)}
+.btn.ghost{border:1px solid var(--line);color:var(--fg)}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.hero-photo{margin:0;position:relative;justify-self:center;width:100%;max-width:440px}
+.hero-photo img{display:block;width:100%;height:auto;aspect-ratio:780/920;object-fit:cover;object-position:35% center;border-radius:220px 220px 18px 18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.hero-photo figcaption{margin-top:.6rem;font-size:.8rem;color:var(--muted);text-align:center}
+.hero-photo::before{content:"";position:absolute;inset:-14px -14px auto;height:calc(100% - 1.6rem);border:1px solid var(--gold);border-radius:234px 234px 26px 26px;opacity:.45;pointer-events:none}
+.facts{display:flex;flex-wrap:wrap;gap:var(--s4);margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid var(--line)}
+.facts b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.5rem;color:var(--fg);font-variant-numeric:tabular-nums}
+.facts span{font-size:.85rem;color:var(--muted)}
+
+/* sections */
+section.block{border-top:1px solid var(--line)}
+section.block>.wrap{padding-block:var(--s6)}
+.head{display:grid;gap:var(--s1);margin-bottom:var(--s4);max-width:46rem}
+.head h2{font-size:clamp(1.7rem,3.6vw,2.5rem)}
+.head p{color:var(--muted)}
+.sub{margin-top:var(--s6)}
+.sub>.head h2{font-size:clamp(1.45rem,3vw,2rem)}
+
+/* photo slot */
+.photo{margin:0;display:grid;gap:.5rem}
+.photo .frame{aspect-ratio:4/3;max-width:100%;border-radius:12px;overflow:hidden;background:var(--surface);display:grid;place-items:center}
+.photo .frame svg,.photo .frame img{width:100%;height:100%;object-fit:cover;display:block}
+.photo figcaption{font-size:.85rem;color:var(--muted)}
+
+/* story timeline */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.era{display:grid;gap:var(--s1);align-content:start;padding-top:var(--s2);border-top:2px solid var(--clay)}
+.era .when{font-family:var(--font-mono);font-size:.8rem;color:var(--clay);letter-spacing:.06em}
+.era h3{font-size:1.2rem}
+.era p{color:var(--muted)}
+blockquote{margin:var(--s4) 0 0;padding:0;font-family:var(--font-display);font-size:clamp(1.25rem,2.6vw,1.6rem);line-height:1.6;color:var(--gold);max-width:36ch}
+
+/* identity */
+.traits{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.trait{background:var(--bg);padding:var(--s3);display:grid;gap:var(--s1);align-content:start}
+.trait .k{font-family:var(--font-mono);font-size:.75rem;color:var(--celadon);letter-spacing:.1em;text-transform:uppercase}
+.trait h3{font-size:1.25rem}
+.trait p{color:var(--muted)}
+
+/* process */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(14.5rem,1fr));gap:var(--s3);counter-reset:step}
+.step{display:grid;gap:var(--s2);align-content:start;counter-increment:step}
+.step h3{font-size:1.1rem;display:flex;gap:.6rem;align-items:baseline}
+.step h3::before{content:counter(step);font-family:var(--font-mono);font-size:.8rem;color:var(--bg);background:var(--gold);border-radius:999px;min-width:1.6rem;height:1.6rem;display:inline-grid;place-items:center;flex:none;transform:translateY(-.15rem)}
+.step p{color:var(--muted);font-size:.95rem}
+
+/* places */
+.place{display:grid;grid-template-columns:1fr 1.2fr;gap:var(--s4);align-items:start}
+.place-info{display:grid;gap:var(--s2)}
+.place-info h3{font-size:1.4rem}
+.place-info>p{color:var(--muted)}
+.place-info dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.4rem var(--s2);font-size:.95rem}
+.place-info dt{color:var(--muted)}
+.place-info dd{margin:0}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.gallery .photo:first-child{grid-column:1/-1}
+
+/* brand: problems */
+.problems{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);padding:0;margin:0 0 var(--s5);list-style:none}
+.problems li{border-top:2px solid var(--clay);padding-top:var(--s2);color:var(--muted)}
+.problems b{display:block;color:var(--fg);font-weight:600;margin-bottom:.25rem}
+
+/* product lineup intro */
+.lineup{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-bottom:var(--s5)}
+.lineup a{display:grid;gap:.2rem;padding:var(--s3);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--fg);transition:transform .35s var(--ease),background .35s}
+.lineup a:hover{transform:translateY(-4px);background:var(--raised)}
+.lineup .kind{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--celadon)}
+.lineup .nm{font-family:var(--font-display);font-size:1.2rem}
+.lineup .ds{font-size:.9rem;color:var(--muted)}
+
+/* product spread */
+.prod{display:grid;grid-template-columns:1.25fr 1fr;gap:var(--s4);align-items:center;margin-top:var(--s5)}
+.prod.flip{grid-template-columns:1fr 1.25fr}
+.prod.flip .prod-media{order:2}
+.prod-media{margin:0;display:grid;gap:.5rem}
+.prod-media img{display:block;width:100%;height:auto;border-radius:16px;background:var(--cream)}
+.prod-media figcaption{font-size:.8rem;color:var(--muted)}
+.prod-text{display:grid;gap:var(--s2);align-content:start}
+.prod-text .kind{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--celadon)}
+.prod-text h3{font-size:clamp(1.5rem,3vw,2rem)}
+.prod-text h3 small{display:block;font-family:var(--font-body);font-size:.95rem;color:var(--gold);margin-top:.2rem}
+.prod-text>p{color:var(--muted)}
+.feats{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.feats li{display:grid;grid-template-columns:1.6rem 1fr;gap:.5rem;align-items:start;font-size:.97rem}
+.feats li::before{content:"";width:.6rem;height:.6rem;margin-top:.6rem;border-radius:2px;background:var(--gold);transform:rotate(45deg);justify-self:center}
+.feats b{font-weight:600}
+.for{display:flex;flex-wrap:wrap;gap:.4rem}
+.for span{font-size:.8rem;padding:.2rem .7rem;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+
+/* cup coverflow */
+.cups{overflow:hidden;margin-top:var(--s5);padding:var(--s4) 0 var(--s3);border-radius:24px;background:radial-gradient(ellipse at 50% 40%,color-mix(in srgb,var(--gold) 16%,transparent),transparent 70%)}
+.cups-head{text-align:center;max-width:40rem;margin:0 auto var(--s3);display:grid;gap:var(--s1);padding-inline:var(--s2)}
+.cups-head .kind{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--celadon)}
+.cups-head h3{font-size:clamp(1.5rem,3vw,2rem)}
+.cups-head p{color:var(--muted)}
+.cf{position:relative;height:clamp(232px,42vw,430px);perspective:1400px;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none}
+.cf-item{position:absolute;left:50%;top:0;width:clamp(210px,38vw,400px);aspect-ratio:1;margin:0;cursor:pointer;display:grid;place-items:center;
+  transition:transform .8s var(--ease),opacity .6s var(--ease),filter .6s var(--ease);will-change:transform}
+.cf-item::before{content:"";position:absolute;left:14%;right:14%;bottom:6%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);transition:transform .8s var(--ease),opacity .6s}
+.cf-item img{position:relative;max-width:90%;max-height:84%;width:auto;height:auto;object-fit:contain;display:block;pointer-events:none;transform-origin:50% 90%;transition:transform 1s var(--ease)}
+.cf-item.is-active{cursor:default}
+.cf-item.is-active img{animation:land .9s var(--ease) both}
+.cf-item.is-active::before{animation:shadow .9s var(--ease) both}
+@keyframes land{0%{transform:translateY(-26px) scale(.94) rotate(-4deg)}55%{transform:translateY(3px) scale(1.03) rotate(1deg)}100%{transform:translateY(0) scale(1.02)}}
+@keyframes shadow{0%{transform:scaleX(.6);opacity:.3}55%{transform:scaleX(1.08);opacity:1}100%{transform:none;opacity:.9}}
+.cf-glow{position:absolute;left:50%;top:50%;width:clamp(220px,36vw,380px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--gold) 30%,transparent),transparent);pointer-events:none}
+.cf-ui{display:flex;align-items:center;justify-content:center;gap:var(--s3);margin-top:var(--s3)}
+.cf-btn{width:3rem;height:3rem;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:transform .3s var(--ease),border-color .3s,background .3s}
+.cf-btn:hover{border-color:var(--gold);background:var(--raised)}
+.cf-btn:active{transform:scale(.92)}
+.cf-btn svg{width:1.1rem;height:1.1rem}
+.cf-dots{display:flex;gap:.45rem}
+.cf-dots button{width:.55rem;height:.55rem;padding:0;border-radius:999px;border:0;background:var(--line);cursor:pointer;transition:width .5s var(--ease),background .5s}
+.cf-dots button[aria-current="true"]{width:1.8rem;background:var(--gold)}
+.cf-info{text-align:center;max-width:34rem;margin:var(--s3) auto 0;padding-inline:var(--s2);display:grid;gap:.35rem;min-height:9.5rem}
+.cf-info .count{font-family:var(--font-mono);font-size:.78rem;color:var(--muted);letter-spacing:.1em}
+.cf-info h4{margin:0;font-family:var(--font-display);font-weight:400;font-size:1.45rem}
+.cf-info .shape{font-size:.85rem;color:var(--gold)}
+.cf-info p{color:var(--muted);font-size:.97rem}
+.cf-info.swap>*{animation:rise .6s var(--ease) both}
+.cf-info.swap>*:nth-child(2){animation-delay:.05s}.cf-info.swap>*:nth-child(3){animation-delay:.1s}.cf-info.swap>*:nth-child(4){animation-delay:.15s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cups-note{text-align:center;font-size:.8rem;color:var(--muted);margin-top:var(--s2)}
+
+/* magnet steps */
+.msteps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;counter-reset:ms}
+.msteps li{counter-increment:ms;display:grid;gap:.3rem;justify-items:center;text-align:center;font-size:.85rem;color:var(--muted);padding:.7rem .3rem;border-radius:12px;background:var(--surface)}
+.msteps li::before{content:counter(ms);display:grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--clay);color:#fff;font-family:var(--font-mono);font-size:.8rem}
+
+/* magnet studio: a steel "fridge door" stage + controls */
+.studio-head{margin-top:var(--s5);display:grid;gap:.3rem}
+.studio-head h4{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(1.3rem,2.6vw,1.6rem)}
+.studio-head p{color:var(--muted)}
+.studio{margin-top:var(--s3);display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s4);align-items:start;background:var(--surface);border-radius:24px;padding:var(--s3)}
+.stage{position:relative;border-radius:18px;aspect-ratio:1;overflow:hidden;display:grid;grid-template-rows:1fr auto;place-items:center;padding:2.2rem 1rem .9rem;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 3px),linear-gradient(100deg,#b8bdc3,#eceef1 38%,#c3c8cd 58%,#e4e7ea 80%,#b4b9bf)}
+.stage::after{content:"";position:absolute;right:7%;top:12%;bottom:12%;width:3.2%;border-radius:999px;background:linear-gradient(90deg,#9aa0a6,#e8eaec 45%,#a4aab0);box-shadow:-2px 0 6px rgba(0,0,0,.18)}
+.stage-tag{position:absolute;left:1rem;top:.9rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#4a4f55}
+.stage>div{width:100%;height:100%;display:grid;place-items:center;min-height:0}
+.stage svg{width:82%;max-height:100%;height:auto;overflow:visible;cursor:grab;transition:transform .5s var(--ease)}
+.stage svg:hover{transform:rotate(-3deg) scale(1.03)}
+.stage svg.pop{animation:pop .7s var(--ease)}
+@keyframes pop{0%{transform:scale(.86) rotate(-6deg);opacity:.4}60%{transform:scale(1.04) rotate(1deg);opacity:1}100%{transform:none}}
+.stage-name{text-align:center;position:relative;z-index:1;line-height:1.5;font-size:.85rem;color:#3c4046;padding-inline:1rem}
+.real{position:absolute;left:4%;top:10%;width:28%;margin:0;padding:.5rem .5rem .35rem;background:#fbf7f0;border-radius:6px;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);transform:rotate(-5deg) translateY(12px);opacity:0;transition:opacity .5s var(--ease),transform .6s var(--ease);pointer-events:none;z-index:2}
+.real.on{opacity:1;transform:rotate(-5deg)}
+.real img{display:block;width:100%;aspect-ratio:1;object-fit:contain}
+.real figcaption{text-align:center;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#7a5a43;margin-top:.2rem}
+.presets img{width:100%;max-width:3.6rem;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}
+.controls{display:grid;gap:var(--s3);align-content:start}
+.ctl{display:grid;gap:.6rem}
+.ctl-h{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2)}
+.ctl-h b{font-weight:600;font-size:.95rem}
+.ctl-h span{font-size:.8rem;color:var(--muted)}
+.presets{display:grid;grid-template-columns:repeat(6,1fr);gap:.4rem}
+.presets button{display:grid;gap:.25rem;justify-items:center;padding:.45rem .2rem .5rem;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;font-family:var(--font-body);font-size:.72rem;line-height:1.25;transition:border-color .3s,transform .3s var(--ease)}
+.presets button:hover{transform:translateY(-3px)}
+.presets svg{width:100%;max-width:3.4rem;height:auto;overflow:visible}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chips button{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .85rem;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;font-family:var(--font-body);font-size:.85rem;transition:background .3s,border-color .3s,color .3s}
+.chips button svg{width:1.05rem;height:1.05rem}
+.chips button:hover,.presets button:hover{border-color:var(--gold)}
+.chips button[aria-pressed="true"],.presets button[aria-pressed="true"]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,var(--bg))}
+.chips.multi button[aria-pressed="true"]::before{content:"✓";color:var(--gold);font-size:.8rem}
+.glazes button .sw{width:1.05rem;height:1.05rem;border-radius:50%;border:1px solid rgba(0,0,0,.25)}
+.studio-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.studio-note{font-size:.8rem;color:var(--muted)}
+@media (max-width:900px){.studio{grid-template-columns:1fr}.stage{max-width:440px;width:100%;justify-self:center}}
+@media (max-width:560px){.studio{padding:var(--s2)}.presets{grid-template-columns:repeat(3,1fr)}}
+
+/* trip */
+.trip{margin-top:var(--s5);padding:var(--s4);border-radius:24px;background:var(--surface)}
+.trip-head{display:grid;gap:var(--s1);max-width:44rem;margin-bottom:var(--s4)}
+.trip-head .kind{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--celadon)}
+.trip-head h3{font-size:clamp(1.5rem,3vw,2rem)}
+.trip-head p{color:var(--muted)}
+.stations{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);position:relative}
+.stations::before{content:"";position:absolute;left:1.3rem;right:1.3rem;top:1.3rem;height:2px;background:linear-gradient(90deg,var(--clay),var(--gold));transform-origin:left;transform:scaleX(var(--p,1));transition:transform 1.6s var(--ease)}
+html.js .stations:not(.in){--p:0}
+.stations li{position:relative;display:grid;gap:.5rem;align-content:start}
+.stations .no{width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:2px solid var(--gold);color:var(--gold);font-family:var(--font-mono);font-size:.9rem;position:relative;z-index:1}
+.stations h4{margin:.3rem 0 0;font-family:var(--font-display);font-weight:400;font-size:1.1rem;line-height:1.4}
+.stations p{color:var(--muted);font-size:.93rem}
+.stations .take{font-size:.8rem;color:var(--celadon)}
+.value{margin-top:var(--s5);padding:var(--s3);border:1px solid var(--gold);border-radius:14px;max-width:66ch}
+
+/* BMC */
+.bmc{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.cell{background:var(--surface);padding:var(--s2);border-radius:8px;display:grid;gap:.4rem;align-content:start;min-width:0}
+.cell h3{font-family:var(--font-body);font-weight:600;font-size:.95rem}
+.cell .th-h{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em}
+.cell ul{margin:0;padding-left:1.1rem;font-size:.88rem;line-height:1.6;color:var(--muted)}
+.cell .grp{font-size:.75rem;color:var(--celadon);font-weight:600;margin-top:.3rem}
+.cell.vp{background:var(--raised);outline:1px solid var(--gold)}
+.kp{grid-column:1/3;grid-row:1/3}.ka{grid-column:3/5;grid-row:1}.kr{grid-column:3/5;grid-row:2}
+.vp{grid-column:5/7;grid-row:1/3}.cr{grid-column:7/9;grid-row:1}.ch{grid-column:7/9;grid-row:2}
+.cs{grid-column:9/11;grid-row:1/3}.cost{grid-column:1/6;grid-row:3}.rev{grid-column:6/11;grid-row:3}
+.cost .cols,.rev .cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+
+/* community */
+.impact{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4) var(--s3)}
+@media (max-width:900px){.impact{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.impact{grid-template-columns:1fr}}
+.imp{display:grid;gap:var(--s1);align-content:start}
+.imp h3{font-size:1.15rem}
+.imp p{color:var(--muted);font-size:.97rem}
+
+/* SDGs */
+.sdgs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.sdg{background:var(--surface);border-radius:14px;padding:var(--s3);display:grid;gap:var(--s2);align-content:start}
+.sdg .badge{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em}
+.sdg .num{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:8px;color:#fff;font-family:var(--font-display);font-size:1.2rem;flex:none}
+.sdg8 .num{background:#a21942}.sdg11 .num{background:#c97a12}.sdg12 .num{background:#bf8b2e}
+.sdg h3{font-size:1.15rem}
+.sdg ul{margin:0;padding-left:1.1rem;display:grid;gap:.4rem;color:var(--muted);font-size:.95rem}
+.sdg .t{font-family:var(--font-mono);font-size:.75rem;color:var(--celadon);white-space:nowrap}
+.effects{margin-top:var(--s4);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+.effects div{display:grid;gap:.3rem;align-content:start}
+.effects h3{font-family:var(--font-body);font-weight:600;font-size:1rem;color:var(--gold)}
+.effects p{color:var(--muted);font-size:.95rem}
+
+/* marketing */
+.mk-top{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-bottom:var(--s4)}
+.mk-card{background:var(--surface);border-radius:14px;padding:var(--s3);display:grid;gap:var(--s1);align-content:start}
+.mk-card .k{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--celadon)}
+.mk-card .big{font-family:var(--font-display);font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.45}
+.mk-card p{color:var(--muted)}
+.mk-card.km{grid-column:1/-1;border:1px solid var(--gold);background:var(--raised)}
+.mk-card.km .big{color:var(--gold)}
+.targets{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-bottom:var(--s4)}
+.target{border-top:2px solid var(--gold);padding-top:var(--s2);display:grid;gap:.4rem;align-content:start}
+.target .tier{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.target h3{font-size:1.2rem}
+.target p{color:var(--muted);font-size:.95rem}
+.tactics{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:var(--s3)}
+.tactic{display:grid;gap:.3rem;align-content:start}
+.tactic h4{margin:0;font-family:var(--font-body);font-weight:600;font-size:1rem}
+.tactic p{color:var(--muted);font-size:.93rem}
+.remember{margin-top:var(--s4);font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.6;max-width:40ch}
+.remember em{font-style:normal;color:var(--gold)}
+
+/* take action */
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.act{position:relative;overflow:hidden;border-radius:18px;background:var(--surface);padding:var(--s4) var(--s3) var(--s3);display:grid;gap:var(--s2);align-content:start;transition:transform .4s var(--ease)}
+.act:hover{transform:translateY(-6px)}
+.act .n{font-family:var(--font-display);font-size:3rem;line-height:1;color:var(--gold);opacity:.35;position:absolute;top:.8rem;right:1.1rem}
+.act h3{font-size:1.3rem}
+.act p{color:var(--muted);font-size:.97rem}
+.act .btn{justify-self:start;margin-top:var(--s1)}
+
+/* references */
+.refs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+.refs h3{font-family:var(--font-body);font-weight:600;font-size:1.05rem;margin-bottom:var(--s1)}
+.refs ol,.refs ul{margin:0;padding-left:1.2rem;display:grid;gap:.5rem;color:var(--muted);font-size:.95rem}
+.ph{color:var(--clay);font-family:var(--font-mono);font-size:.88em}
+.table-scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:.55rem .6rem;border-bottom:1px solid var(--line)}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+td.id{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ai{grid-column:1/-1;background:var(--surface);border-radius:14px;padding:var(--s3);display:grid;gap:var(--s2)}
+.ai p{color:var(--muted);max-width:72ch}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:var(--s4);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s2);color:var(--muted);font-size:.85rem}
+
+@media (max-width:900px){
+  .hero .wrap,.place,.refs,.prod,.prod.flip,.mk-top,.targets{grid-template-columns:1fr}
+  .prod.flip .prod-media{order:0}
+  .hero-photo{max-width:320px;grid-row:1}
+  .timeline,.problems,.lineup,.sdgs,.acts{grid-template-columns:1fr}
+  .effects{grid-template-columns:1fr 1fr}
+  .traits{grid-template-columns:1fr}
+  .stations{grid-template-columns:1fr 1fr;row-gap:var(--s4)}
+  .stations::before{display:none}
+  .bmc{grid-template-columns:1fr 1fr}
+  .bmc .cell{grid-column:auto;grid-row:auto}
+  .bmc .vp{grid-column:1/-1;order:-1}
+  .bmc .cost,.bmc .rev{grid-column:1/-1}
+}
+@media (max-width:560px){
+  .menu-btn .ml{display:none}.menu-btn{padding:.5rem .7rem}
+  .brand .bt{display:none}
+  .hero-photo{max-width:270px}
+  .hero-photo img{aspect-ratio:4/5}
+  .hero-photo::before{display:none}
+  .bmc,.gallery,.effects,.stations,.cost .cols,.rev .cols{grid-template-columns:1fr}
+  .msteps{grid-template-columns:1fr 1fr}
+  .trip{padding:var(--s3) var(--s2)}
+  section.block>.wrap{padding-block:var(--s5)}
+  .theme-btn .tl{display:none}.theme-btn{padding:.5rem}
+  .cf-ui{gap:var(--s2)}
+}
+</style>
+</head>
+<body>
+
+<!-- shared gradient for the process drawings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="glaze" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="var(--clay)"/>
+      <stop offset="1" stop-color="var(--raised)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav" data-aria-th="เมนูหลัก" data-aria-en="Main menu" aria-label="เมนูหลัก">
+  <div class="wrap">
+    <a class="brand" href="#home"><span class="logo-slot" aria-hidden="true">LOGO</span><span class="bt">Dragon Jar</span></a>
+    <span class="now" id="now" aria-hidden="true"></span>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language / ภาษา">
+        <button type="button" data-set-lang="th" aria-pressed="true">TH</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="pill theme-btn" id="theme-btn" type="button" data-aria-th="สลับโหมดสี" data-aria-en="Switch colour mode" aria-label="สลับโหมดสี">
+        <span class="dot" aria-hidden="true"></span><span class="tl" id="theme-label"></span>
+      </button>
+      <button class="pill menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-panel">
+        <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="ml"><span class="th">เมนู</span><span class="en">Menu</span></span>
+      </button>
+    </div>
+  </div>
+  <div class="menu-panel" id="menu-panel">
+    <div class="wrap">
+      <ol>
+        <li><a href="#home" data-sec="home"><span class="no">01 · Home</span><span class="nm"><span class="th">หน้าแรก</span><span class="en">Home</span></span></a></li>
+        <li><a href="#story" data-sec="story"><span class="no">02 · Local Story</span><span class="nm"><span class="th">เรื่องราว</span><span class="en">Story</span></span></a></li>
+        <li><a href="#identity" data-sec="identity"><span class="no">03 · Identity &amp; Value</span><span class="nm"><span class="th">อัตลักษณ์และขั้นตอน</span><span class="en">Identity &amp; craft</span></span></a></li>
+        <li><a href="#brand" data-sec="brand"><span class="no">04 · Our Brand</span><span class="nm"><span class="th">สินค้าของเรา</span><span class="en">Our products</span></span></a></li>
+        <li><a href="#trip" data-sec="trip"><span class="no">05 · Experience</span><span class="nm"><span class="th">ทริปแหล่งเรียนรู้</span><span class="en">Learning trip</span></span></a></li>
+        <li><a href="#bmc" data-sec="bmc"><span class="no">06 · Business Model</span><span class="nm"><span class="th">BMC 9 ช่อง</span><span class="en">The 9-block canvas</span></span></a></li>
+        <li><a href="#community" data-sec="community"><span class="no">07 · Community</span><span class="nm"><span class="th">คุณค่าต่อชุมชน</span><span class="en">Community impact</span></span></a></li>
+        <li><a href="#sdgs" data-sec="sdgs"><span class="no">08 · Sustainability</span><span class="nm"><span class="th">SDGs และความยั่งยืน</span><span class="en">SDGs</span></span></a></li>
+        <li><a href="#marketing" data-sec="marketing"><span class="no">09 · Marketing</span><span class="nm"><span class="th">การตลาด</span><span class="en">Marketing &amp; audience</span></span></a></li>
+        <li><a href="#action" data-sec="action"><span class="no">10 · Take Action</span><span class="nm"><span class="th">ร่วมสนับสนุน</span><span class="en">Take action</span></span></a></li>
+        <li><a href="#refs" data-sec="refs"><span class="no">11 · References</span><span class="nm"><span class="th">อ้างอิงและเครดิต</span><span class="en">References &amp; credits</span></span></a></li>
+      </ol>
+    </div>
+  </div>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</nav>
+
+<!-- 01 HOME -->
+<header class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <p class="label">01 · Home · <span class="th">ราชบุรี</span><span class="en">Ratchaburi</span></p>
+      <div class="hero-brand">
+        <span class="logo-slot" aria-hidden="true">LOGO</span>
+        <h1>Dragon <em>Jar</em></h1>
+      </div>
+      <p class="tag"><span class="th">มังกรราชบุรี ที่คุณถือกลับบ้านได้</span><span class="en">Ratchaburi's dragon, made to take home.</span></p>
+      <p class="lead">
+        <span class="th">เราหยิบสองสิ่งที่ทำให้โอ่งมังกรราชบุรีไม่เหมือนใคร คือดินเหนียวแดงของราชบุรีและลายมังกรปั้นมือ มาทำเป็นเหยือกน้ำที่ใช้ได้จริงในบ้านวันนี้ พร้อมเปิดแหล่งเรียนรู้ให้คนมาดูช่างปั้นตัวจริง ลองปั้นเอง แล้วพาของที่ระลึกกลับบ้าน รายได้ส่งกลับไปถึงช่างและชุมชนราชบุรี</span>
+        <span class="en">We took the two things that make the Ratchaburi dragon jar one of a kind, the region's red iron clay and its hand-sculpted dragons, and turned them into a water jug you can use at home today. Then we opened a learning space where you can watch real potters, try the craft yourself, and take a piece of Ratchaburi home, with the income going back to the potters and their community.</span>
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#brand"><span class="th">ดูสินค้า</span><span class="en">See the collection</span></a>
+        <a class="btn ghost" href="#trip"><span class="th">มาเที่ยวแหล่งเรียนรู้</span><span class="en">Visit the workshop</span></a>
+      </div>
+      <div class="facts">
+        <div><b>80+ <span class="th">ปี</span><span class="en">yrs</span></b><span><span class="th">อายุโรงโอ่งเก่าแก่ของราชบุรี</span><span class="en">of dragon-jar making in Ratchaburi</span></span></div>
+        <div><b>4 <span class="th">สถานี</span><span class="en">stops</span></b><span><span class="th">ในทริปแหล่งเรียนรู้</span><span class="en">on the learning trip</span></span></div>
+        <div><b>1 QR</b><span><span class="th">ต่อชิ้น รู้ว่าใครเป็นคนปั้น</span><span class="en">per piece, naming its potter</span></span></div>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <img src="img/dragon-jug-hero.jpg" width="780" height="920"
+        alt="เหยือกมังกรสีน้ำตาลแดง ลายมังกรนูนสีครีมพันรอบตัวเหยือก หางมังกรเป็นหูจับ วางอยู่ในกล่องหนังบุกำมะหยี่"
+        data-alt-th="เหยือกมังกรสีน้ำตาลแดง ลายมังกรนูนสีครีมพันรอบตัวเหยือก หางมังกรเป็นหูจับ วางอยู่ในกล่องหนังบุกำมะหยี่"
+        data-alt-en="A red-brown dragon jug with a cream relief dragon coiled around it, its tail forming the handle, resting in a velvet-lined leather case">
+      <figcaption><span class="th">ภาพจำลองต้นแบบ Dragon Jug · สร้างด้วย AI</span><span class="en">Dragon Jug concept image · AI-generated</span></figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- 02 STORY -->
+<section class="block" id="story">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">02 · Local Story</p>
+      <h2><span class="th">จากดินริมแม่กลอง สู่สัญลักษณ์ของเมือง</span><span class="en">From Mae Klong river clay to the symbol of a city</span></h2>
+      <p><span class="th">ของดีบ้านเรา: โอ่งมังกร ภูมิปัญญาหัตถกรรมเครื่องปั้นดินเผา อำเภอเมืองราชบุรีและอำเภอโพธาราม จังหวัดราชบุรี</span><span class="en">Our local treasure: the dragon jar, a pottery craft of Mueang Ratchaburi and Photharam districts, Ratchaburi province, Thailand.</span></p>
+    </div>
+    <div class="timeline">
+      <div class="era reveal">
+        <span class="when"><span class="th">จุดเริ่มต้น</span><span class="en">The beginning</span></span>
+        <h3><span class="th">ดินดีที่ริมแม่กลอง</span><span class="en">Good clay by the river</span></h3>
+        <p><span class="th">ช่วงที่โอ่งจากจีนหาได้ยาก ช่างปั้นชาวจีนในราชบุรีออกหาแหล่งดิน จนพบดินเหนียวเนื้อดีริมแม่น้ำแม่กลอง จึงเริ่มปั้นโอ่งขึ้นเอง</span><span class="en">When jars from China became hard to find, Chinese potters in Ratchaburi went looking for clay and found a fine, dense clay along the Mae Klong River. They began making jars of their own.</span></p>
+      </div>
+      <div class="era reveal">
+        <span class="when"><span class="th">ยุคต่อมา</span><span class="en">Then</span></span>
+        <h3><span class="th">มังกรมาอยู่บนโอ่ง</span><span class="en">A dragon on every jar</span></h3>
+        <p><span class="th">ช่างนำลายมังกรตามคติจีน ซึ่งหมายถึงโชคลาภ ความอุดมสมบูรณ์ และพลังอำนาจ มาแต่งบนผิวโอ่ง โอ่งใส่น้ำธรรมดาจึงกลายเป็นโอ่งมังกรที่คนทั่วประเทศรู้จัก</span><span class="en">Potters added the Chinese dragon, a sign of fortune, abundance and strength. An ordinary water jar became the dragon jar known across Thailand.</span></p>
+      </div>
+      <div class="era reveal">
+        <span class="when"><span class="th">วันนี้</span><span class="en">Today</span></span>
+        <h3><span class="th">สัญลักษณ์ของราชบุรี</span><span class="en">Ratchaburi's emblem</span></h3>
+        <p><span class="th">โอ่งมังกรอยู่คู่บ้านคนไทยหลายรุ่นและเป็นภาพแทนจังหวัด แต่บ้านส่วนใหญ่มีน้ำประปาแล้ว ความต้องการโอ่งจึงลดลง ขณะที่ครอบครัวช่างยังทำต่อกันมาจนทุกวันนี้</span><span class="en">The dragon jar has served Thai homes for generations and stands for the province. But most homes now have tap water, so demand has fallen, while potter families keep the craft going.</span></p>
+      </div>
+    </div>
+    <blockquote class="reveal"><span class="th">“มังกรทุกตัวบนโอ่ง มาจากมือช่างจริง ๆ ไม่มีตัวไหนเหมือนกันเลย”</span><span class="en">“Every dragon on a jar comes from a potter's hands. No two are ever the same.”</span></blockquote>
+  </div>
+</section>
+
+<!-- 03 IDENTITY + PROCESS + PLACE -->
+<section class="block" id="identity">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">03 · Local Identity &amp; Value</p>
+      <h2><span class="th">ทำไมต้องเป็นมังกรราชบุรี</span><span class="en">What makes it Ratchaburi</span></h2>
+    </div>
+    <div class="traits reveal">
+      <div class="trait">
+        <span class="k"><span class="th">ดิน</span><span class="en">Clay</span></span>
+        <h3><span class="th">ดินแดงของราชบุรี</span><span class="en">Ratchaburi red clay</span></h3>
+        <p><span class="th">ดินเหนียวสีน้ำตาลแดงจากอำเภอเมืองและโพธาราม มีแร่เหล็กสูง เผาแล้วเนื้อแน่น แข็งแรง สีเข้มเป็นเอกลักษณ์</span><span class="en">Iron-rich red-brown clay from Mueang and Photharam. It fires dense and strong, with a deep colour you can recognise.</span></p>
+      </div>
+      <div class="trait">
+        <span class="k"><span class="th">มือ</span><span class="en">Hands</span></span>
+        <h3><span class="th">ลายมังกรทำด้วยมือ</span><span class="en">Hand-made dragons</span></h3>
+        <p><span class="th">ช่างแต่งลายมังกร ลายเมฆ และเกล็ดลงบนผิวทีละใบ ทั้งแบบเขียนลายและแบบปั้นนูน แต่ละใบจึงไม่เหมือนกัน</span><span class="en">Dragons, clouds and scales are painted or sculpted in relief one piece at a time, so no two pieces match.</span></p>
+      </div>
+      <div class="trait">
+        <span class="k"><span class="th">ไฟ</span><span class="en">Fire</span></span>
+        <h3><span class="th">น้ำเคลือบขี้เถ้า</span><span class="en">Ash glaze</span></h3>
+        <p><span class="th">น้ำเคลือบดั้งเดิมทำจากดินผสมขี้เถ้า ผ่านไฟแรงแล้วได้สีน้ำตาลเงาที่เห็นแล้วจำได้ทันที</span><span class="en">The traditional glaze mixes clay and wood ash. High heat turns it the glossy brown everyone recognises.</span></p>
+      </div>
+      <div class="trait">
+        <span class="k"><span class="th">ความหมาย</span><span class="en">Meaning</span></span>
+        <h3><span class="th">ของใช้ที่เป็นสิริมงคล</span><span class="en">An object of good fortune</span></h3>
+        <p><span class="th">มังกรหมายถึงโชคดีและความอุดมสมบูรณ์ โอ่งมังกรจึงเป็นทั้งของใช้และของมงคลประจำบ้าน</span><span class="en">The dragon means luck and abundance, so the jar is both a household object and a blessing for the home.</span></p>
+      </div>
+    </div>
+
+    <div class="sub" id="process">
+      <div class="head reveal">
+        <p class="label"><span class="th">ภูมิปัญญา · ขั้นตอนการทำ</span><span class="en">Know-how · How it's made</span></p>
+        <h2><span class="th">จากก้อนดิน ถึงโอ่งหนึ่งใบ</span><span class="en">From a lump of clay to a finished jar</span></h2>
+        <p><span class="th">วิธีทำแบบดั้งเดิมที่ช่างราชบุรีสืบทอดกันมา และเป็นขั้นตอนเดียวกับที่ใช้ทำเหยือกและถ้วยของ Dragon Jar</span><span class="en">The traditional method Ratchaburi potters have passed down, and the same steps behind every Dragon Jar jug and cup.</span></p>
+      </div>
+      <ol class="steps">
+        <li class="step reveal">
+          <figure class="photo"><div class="frame">
+            <svg viewBox="0 0 160 120" aria-hidden="true">
+              <rect width="160" height="120" fill="var(--surface)"/>
+              <path d="M30 96 q50 -40 100 0z" fill="var(--clay)"/>
+              <path d="M54 66 q8 -16 22 -10 M86 60 q10 -14 22 -4" stroke="var(--fg)" stroke-width="5" stroke-linecap="round" fill="none"/>
+              <path d="M20 98 h120" stroke="var(--line)" stroke-width="2"/>
+            </svg></div></figure>
+          <h3><span class="th">เตรียมและนวดดิน</span><span class="en">Prepare the clay</span></h3>
+          <p><span class="th">หมักดิน ร่อนเศษหินออก แล้วนวดไล่ฟองอากาศ ชิ้นงานจะได้ไม่แตกตอนเผา</span><span class="en">Soak, sieve out stones and knead out air so the piece won't crack in the kiln.</span></p>
+        </li>
+        <li class="step reveal">
+          <figure class="photo"><div class="frame">
+            <svg viewBox="0 0 160 120" aria-hidden="true">
+              <rect width="160" height="120" fill="var(--surface)"/>
+              <ellipse cx="80" cy="100" rx="50" ry="8" fill="var(--raised)" stroke="var(--muted)" stroke-width="2"/>
+              <path d="M58 98 v-40 q0 -14 8 -20 h28 q8 6 8 20 v40z" fill="var(--clay)"/>
+              <path d="M40 70 a40 10 0 0 1 80 0" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 5" fill="none"/>
+            </svg></div></figure>
+          <h3><span class="th">ขึ้นรูป</span><span class="en">Throw the form</span></h3>
+          <p><span class="th">ขึ้นรูปบนแป้นหมุน โอ่งใบใหญ่ต้องขดดินต่อเป็นชั้น แล้วตบและรีดให้ผิวเรียบจนได้ทรง</span><span class="en">Shape it on the wheel. Big jars are built up in coils, then beaten and smoothed into shape.</span></p>
+        </li>
+        <li class="step reveal">
+          <figure class="photo"><div class="frame">
+            <svg viewBox="0 0 160 120" aria-hidden="true">
+              <rect width="160" height="120" fill="var(--surface)"/>
+              <circle cx="130" cy="28" r="12" fill="var(--gold)"/>
+              <path d="M30 100 v-34 q0 -12 8 -16 h20 q8 4 8 16 v34z M86 100 v-34 q0 -12 8 -16 h20 q8 4 8 16 v34z" fill="var(--clay)" opacity=".85"/>
+              <path d="M16 102 h128" stroke="var(--line)" stroke-width="2"/>
+            </svg></div></figure>
+          <h3><span class="th">ผึ่งให้หมาด</span><span class="en">Air-dry</span></h3>
+          <p><span class="th">ตั้งไว้ในร่มให้ดินแข็งพอรับน้ำหนักลายที่จะติดเพิ่ม โดยไม่เสียทรง</span><span class="en">Rest it in the shade until it's firm enough to carry the relief without losing shape.</span></p>
+        </li>
+        <li class="step reveal">
+          <figure class="photo"><div class="frame">
+            <svg viewBox="0 0 160 120" aria-hidden="true">
+              <rect width="160" height="120" fill="var(--surface)"/>
+              <path d="M40 108 v-50 q0 -24 18 -32 h44 q18 8 18 32 v50z" fill="var(--clay)"/>
+              <path d="M44 72 C 64 50, 80 92, 100 66 S 120 60, 116 74" stroke="var(--gold)" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <circle cx="116" cy="74" r="5" fill="var(--gold)"/>
+            </svg></div></figure>
+          <h3><span class="th">แต่งลายมังกร</span><span class="en">Add the dragon</span></h3>
+          <p><span class="th">เขียนลายด้วยดินขาว หรือปั้นเส้นดินเป็นมังกรแล้วติดนูน ตามด้วยลายเมฆ ขั้นนี้ใช้ฝีมือมากที่สุด</span><span class="en">Paint in white slip or sculpt a clay dragon in relief, then clouds. This step takes the most skill.</span></p>
+        </li>
+        <li class="step reveal">
+          <figure class="photo"><div class="frame">
+            <svg viewBox="0 0 160 120" aria-hidden="true">
+              <rect width="160" height="120" fill="var(--surface)"/>
+              <path d="M50 108 v-46 q0 -22 16 -30 h28 q16 8 16 30 v46z" fill="url(#glaze)"/>
+              <path d="M50 70 q30 10 60 0" stroke="var(--fg)" stroke-opacity=".5" stroke-width="2" fill="none"/>
+              <path d="M118 30 q6 10 0 16 q-6 -6 0 -16z" fill="var(--celadon)"/>
+            </svg></div></figure>
+          <h3><span class="th">ชุบน้ำเคลือบ</span><span class="en">Glaze</span></h3>
+          <p><span class="th">ราดน้ำเคลือบจากดินและขี้เถ้าให้ทั่ว ช่วยให้เก็บน้ำได้ดีและเงางามหลังเผา</span><span class="en">Coat it in clay-and-ash glaze so it holds water and shines after firing.</span></p>
+        </li>
+        <li class="step reveal">
+          <figure class="photo"><div class="frame">
+            <svg viewBox="0 0 160 120" aria-hidden="true">
+              <rect width="160" height="120" fill="var(--surface)"/>
+              <path d="M14 100 q0 -50 66 -56 q66 6 66 56z" fill="var(--raised)" stroke="var(--muted)" stroke-width="2"/>
+              <path d="M66 100 q-4 -22 14 -34 q18 12 14 34z" fill="var(--clay)"/>
+              <path d="M74 100 q0 -14 6 -20 q6 6 6 20z" fill="var(--gold)"/>
+            </svg></div></figure>
+          <h3><span class="th">เผาในเตา</span><span class="en">Fire</span></h3>
+          <p><span class="th">เผาด้วยไฟแรงต่อเนื่องหลายวัน ช่างคุมไฟตลอด เพราะความร้อนกำหนดเนื้อดินและสีเคลือบ</span><span class="en">Fire for days at high heat. The potter tends the flame throughout, since heat decides the body and colour.</span></p>
+        </li>
+        <li class="step reveal">
+          <figure class="photo"><div class="frame">
+            <svg viewBox="0 0 160 120" aria-hidden="true">
+              <rect width="160" height="120" fill="var(--surface)"/>
+              <path d="M22 104 v-36 q0 -16 12 -22 h20 q12 6 12 22 v36z M94 104 v-36 q0 -16 12 -22 h20 q12 6 12 22 v36z" fill="url(#glaze)"/>
+              <path d="M26 80 q14 -10 36 0 M98 80 q14 -10 36 0" stroke="var(--gold)" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M70 60 l6 6 l12 -14" stroke="var(--celadon)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg></div></figure>
+          <h3><span class="th">คัดคุณภาพ</span><span class="en">Check and select</span></h3>
+          <p><span class="th">รอเตาเย็นแล้วนำออก เคาะฟังเสียงหารอยร้าว คัดเฉพาะชิ้นที่สมบูรณ์</span><span class="en">Once cool, tap each piece and listen for cracks. Only sound pieces go out.</span></p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="sub" id="places">
+      <div class="head reveal">
+        <p class="label"><span class="th">แหล่งผลิต · ช่างที่ยังทำอยู่</span><span class="en">Where it's made · Potters at work</span></p>
+        <h2><span class="th">ช่างปั้นโอ่งตัวจริงในราชบุรี</span><span class="en">Real dragon-jar potters in Ratchaburi</span></h2>
+      </div>
+      <div class="place">
+        <div class="place-info reveal">
+          <h3><span class="th">โรงงานเถ้าฮงไถ่</span><span class="en">Tao Hong Tai Ceramics</span></h3>
+          <p><span class="th">โรงงานเครื่องปั้นดินเผาเก่าแก่ที่สุดแห่งหนึ่งของราชบุรี เปิดมากว่า 80 ปี ผู้ก่อตั้งเป็นชาวจีนที่พบว่าดินราชบุรีเหมาะกับการทำโอ่งมังกร ทุกวันนี้ยังมีช่างทำงานในโรงงานและมีมุมจัดแสดงงานศิลปะ</span><span class="en">One of Ratchaburi's oldest potteries, running for more than 80 years. Its Chinese founder found the local clay ideal for dragon jars. Potters still work here today, alongside a gallery of ceramic art.</span></p>
+          <dl>
+            <dt><span class="th">ที่ตั้ง</span><span class="en">Where</span></dt><dd><span class="th">อำเภอเมืองราชบุรี</span><span class="en">Mueang Ratchaburi district</span></dd>
+            <dt><span class="th">ดูอะไรได้</span><span class="en">See</span></dt><dd><span class="th">ช่างขึ้นรูปและแต่งลาย เตาเผา งานเซรามิกร่วมสมัย</span><span class="en">Throwing and decorating, kilns, contemporary ceramics</span></dd>
+            <dt><span class="th">ก่อนไป</span><span class="en">Before you go</span></dt><dd><span class="th">โทรสอบถามเวลาเปิดและการเข้าชมกับโรงงานก่อน</span><span class="en">Call ahead for opening hours and visits</span></dd>
+          </dl>
+        </div>
+        <div class="gallery reveal">
+          <figure class="photo">
+            <div class="frame"><img src="img/potter-throwing.jpg" width="1024" height="683" loading="lazy"
+              alt="ช่างกำลังขึ้นรูปปากโอ่งบนแป้นหมุนในโรงงาน"
+              data-alt-th="ช่างกำลังขึ้นรูปปากโอ่งบนแป้นหมุนในโรงงาน" data-alt-en="A potter shaping the rim of a jar on the wheel"></div>
+            <figcaption><span class="th">ช่างขึ้นรูปโอ่งบนแป้นหมุน</span><span class="en">Throwing a jar on the wheel</span> · <span class="th">ภาพ</span><span class="en">Photo</span>: เที่ยวราชบุรี.com</figcaption>
+          </figure>
+          <figure class="photo">
+            <div class="frame"><img src="img/kiln-loading.jpg" width="1024" height="683" loading="lazy"
+              alt="ช่างสองคนยกโอ่งดินดิบเข้าเตาเผาอุโมงค์อิฐ"
+              data-alt-th="ช่างสองคนยกโอ่งดินดิบเข้าเตาเผาอุโมงค์อิฐ" data-alt-en="Two potters lifting an unfired jar into a brick tunnel kiln"></div>
+            <figcaption><span class="th">ยกโอ่งเข้าเตา</span><span class="en">Loading the kiln</span> · <span class="th">ภาพ</span><span class="en">Photo</span>: เที่ยวราชบุรี.com</figcaption>
+          </figure>
+          <figure class="photo">
+            <div class="frame"><img src="img/finished-dragon-jar.jpg" width="1024" height="683" loading="lazy"
+              alt="โอ่งมังกรเคลือบดำ ลายมังกรนูนสีทอง"
+              data-alt-th="โอ่งมังกรเคลือบดำ ลายมังกรนูนสีทอง" data-alt-en="A black-glazed dragon jar with a gold relief dragon"></div>
+            <figcaption><span class="th">โอ่งมังกรที่เสร็จแล้ว</span><span class="en">A finished dragon jar</span> · <span class="th">ภาพ</span><span class="en">Photo</span>: เที่ยวราชบุรี.com</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 OUR BRAND -->
+<section class="block" id="brand">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">04 · Our Brand / Our Idea</p>
+      <h2><span class="th">โอ่งใบใหญ่ ย่อให้ถือกลับบ้านได้</span><span class="en">The big jar, made small enough to carry home</span></h2>
+      <p><span class="th">เราไม่ได้เปลี่ยนภูมิปัญญา เราเปลี่ยนรูปแบบให้เข้ากับบ้านและนักท่องเที่ยววันนี้</span><span class="en">We kept the craft. We changed the form to fit today's homes and travellers.</span></p>
+    </div>
+
+    <ul class="problems">
+      <li class="reveal"><b><span class="th">โอ่งไม่จำเป็นแล้ว</span><span class="en">Jars aren't needed anymore</span></b><span class="th">บ้านส่วนใหญ่มีน้ำประปา คนจึงเลิกใช้โอ่งเก็บน้ำ ยอดขายลดลง</span><span class="en">Most homes have tap water, so fewer people buy jars.</span></li>
+      <li class="reveal"><b><span class="th">ใหญ่เกินจะเป็นของฝาก</span><span class="en">Too big to take home</span></b><span class="th">นักท่องเที่ยวชอบลายมังกร แต่ขนโอ่งใบใหญ่กลับบ้านหรือกลับประเทศไม่ได้</span><span class="en">Visitors love the dragons, but nobody can fly home with a full-size jar.</span></li>
+      <li class="reveal"><b><span class="th">ช่างรุ่นใหม่ลดลง</span><span class="en">Fewer young potters</span></b><span class="th">รายได้ไม่แน่นอน คนรุ่นใหม่จึงไม่ค่อยเข้ามาสืบต่อ</span><span class="en">Uncertain income keeps young people from taking up the craft.</span></li>
+    </ul>
+
+    <div class="lineup">
+      <a class="reveal" href="#jug"><span class="kind">Core product</span><span class="nm">Dragon Jug</span><span class="ds"><span class="th">เหยือกน้ำลายมังกรปั้นมือ</span><span class="en">A hand-sculpted dragon water jug</span></span></a>
+      <a class="reveal" href="#cups"><span class="kind">Souvenir</span><span class="nm">Dragon Cup</span><span class="ds"><span class="th">ถ้วยไอติมลายมังกร 4 แบบ</span><span class="en">Dragon ice cream cups in 4 shapes</span></span></a>
+      <a class="reveal" href="#magnet"><span class="kind">Workshop</span><span class="nm">Dragon Magnet</span><span class="ds"><span class="th">แม่เหล็กติดตู้เย็นที่คุณปั้นเอง</span><span class="en">A fridge magnet you make yourself</span></span></a>
+    </div>
+
+    <!-- JUG -->
+    <div class="prod" id="jug">
+      <figure class="prod-media reveal">
+        <img src="img/dragon-jug-set.jpg" width="1440" height="960" loading="lazy"
+          alt="ชุดเหยือกมังกรในกล่องหนังลายมังกร มีการ์ด QR Code ป้ายหมายเลข DR-001 และใบรับรองของแท้"
+          data-alt-th="ชุดเหยือกมังกรในกล่องหนังลายมังกร มีการ์ด QR Code ป้ายหมายเลข DR-001 และใบรับรองของแท้"
+          data-alt-en="The Dragon Jug in a dragon-embossed leather case with a QR code card, serial tag DR-001 and a certificate of authenticity">
+        <figcaption><span class="th">ภาพจำลองต้นแบบ สร้างด้วย AI · ชื่อช่างและวันที่บนใบรับรองเป็นตัวอย่าง</span><span class="en">AI-generated concept image · artisan name and date on the certificate are placeholders</span></figcaption>
+      </figure>
+      <div class="prod-text reveal">
+        <span class="kind">Core product</span>
+        <h3>Dragon Jug<small><span class="th">เหยือกมังกร</span><span class="en">The dragon water jug</span></small></h3>
+        <p><span class="th">เหยือกน้ำดีไซน์ร่วมสมัยจากภูมิปัญญาโอ่งมังกร ตัวมังกรปั้นนูนพันรอบเหยือก หางกลายเป็นหูจับ ใช้รินน้ำบนโต๊ะได้ทุกวัน หรือตั้งโชว์เป็นของมงคลประจำบ้าน</span><span class="en">A contemporary water jug built on dragon-jar know-how. The relief dragon wraps the body and its tail becomes the handle. Pour from it every day, or display it as a blessing for the home.</span></p>
+        <ul class="feats">
+          <li><span><b><span class="th">ดินแดงราชบุรีแท้</span><span class="en">Real Ratchaburi clay</span></b> · <span class="th">ใช้วัสดุจากแหล่งผลิตดั้งเดิม</span><span class="en">from the traditional source</span></span></li>
+          <li><span><b><span class="th">มังกรปั้นมือ</span><span class="en">Hand-sculpted dragon</span></b> · <span class="th">ลายไม่ซ้ำกันสักใบ</span><span class="en">no two alike</span></span></li>
+          <li><span><b>QR Code</b> · <span class="th">สแกนดูประวัติชิ้นงานและช่างผู้ปั้น</span><span class="en">scan to meet the potter who made it</span></span></li>
+          <li><span><b><span class="th">กล่องของขวัญกันกระแทก</span><span class="en">Protective gift case</span></b> · <span class="th">พร้อมใบรับรองและหมายเลขประจำชิ้น</span><span class="en">with certificate and serial number</span></span></li>
+          <li><span><b><span class="th">รับประกัน</span><span class="en">Warranty</span></b> · <span class="th">และบริการซ่อมเบื้องต้นตามเงื่อนไข</span><span class="en">and basic repair, terms apply</span></span></li>
+        </ul>
+        <div class="for"><span><span class="th">ของฝากนักท่องเที่ยว</span><span class="en">Travellers' keepsake</span></span><span><span class="th">นักสะสมงานคราฟต์</span><span class="en">Craft collectors</span></span><span><span class="th">ของขวัญมงคล</span><span class="en">Auspicious gift</span></span></div>
+      </div>
+    </div>
+
+    <!-- CUPS -->
+    <div class="cups" id="cups">
+      <div class="cups-head reveal">
+        <span class="kind">Souvenir · Ice cream</span>
+        <h3>Dragon Cup<span class="th"> · ถ้วยไอติมลายมังกร</span></h3>
+        <p><span class="th">ทุกคนในทริปได้ไอติมในถ้วยเซรามิกลายมังกร กินเสร็จแล้วถ้วยเป็นของคุณ ใช้ซ้ำได้ ไม่ต้องทิ้งถ้วยกระดาษ เลือกแบบที่ชอบ หรือซื้อแยกเก็บให้ครบชุด</span><span class="en">Everyone on the trip gets ice cream served in a ceramic dragon cup. When you're done, the cup is yours to keep and reuse, with no paper cup to throw away. Pick your favourite, or buy the rest to complete the set.</span></p>
+      </div>
+
+      <div class="cf" id="cf" tabindex="0"  role="region" aria-roledescription="carousel" data-aria-th="ถ้วยไอติมลายมังกร" data-aria-en="Dragon ice cream cups" aria-label="ถ้วยไอติมลายมังกร">
+        <span class="cf-glow" aria-hidden="true"></span>
+        <figure class="cf-item" data-i="0"><img src="img/cup-cloud-wave.png" width="720" height="712" alt="ถ้วย Cloud Wave" data-alt-th="ถ้วย Cloud Wave ขอบหยักเป็นคลื่น ลายมังกรนูน ใส่ไอติมวานิลลาและช็อกโกแลต" data-alt-en="The Cloud Wave cup, wavy rim and relief dragon, holding vanilla and chocolate ice cream"></figure>
+        <figure class="cf-item" data-i="1"><img src="img/cup-dragon-curve.png" width="761" height="528" alt="ถ้วย Dragon Curve" data-alt-th="ถ้วย Dragon Curve ทรงเรือโค้งยาว ลายมังกรนูน ใส่ไอติมชาเขียว" data-alt-en="The Dragon Curve cup, a long boat-shaped bowl with a relief dragon, holding matcha ice cream"></figure>
+        <figure class="cf-item" data-i="2"><img src="img/cup-lotus-aura.png" width="850" height="730" alt="ถ้วย Lotus Aura" data-alt-th="ถ้วย Lotus Aura ทรงกลีบบัวบาน ลายมังกรนูน ใส่ไอติมสตรอว์เบอร์รีและวานิลลา" data-alt-en="The Lotus Aura cup, shaped like opening lotus petals with a relief dragon, holding strawberry and vanilla ice cream"></figure>
+        <figure class="cf-item" data-i="3"><img src="img/cup-sky-cloud.png" width="982" height="649" alt="ถ้วย Sky Cloud" data-alt-th="ถ้วย Sky Cloud มีขาตั้งและหูจับรูปก้อนเมฆ ลายมังกรนูน" data-alt-en="The Sky Cloud cup on a footed base with a cloud-shaped handle and relief dragon"></figure>
+        <figure class="cf-item" data-i="4"><img src="img/cup-handle-box.png" width="1202" height="1158" alt="กล่องหิ้วลายมังกร" data-alt-th="กล่องหิ้วกระดาษลายมังกรนูน มีหูหิ้วรูปหัวมังกรและป้ายแขวน" data-alt-en="A dragon-printed carry box with a dragon-head handle and hang tag"></figure>
+      </div>
+
+      <div class="cf-ui">
+        <button class="cf-btn" type="button" data-dir="-1" data-aria-th="แบบก่อนหน้า" data-aria-en="Previous" aria-label="แบบก่อนหน้า">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="cf-dots" id="cf-dots"></div>
+        <button class="cf-btn" type="button" data-dir="1" data-aria-th="แบบถัดไป" data-aria-en="Next" aria-label="แบบถัดไป">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <div class="cf-info" id="cf-info" aria-live="polite"></div>
+      <p class="cups-note"><span class="th">ภาพจำลองต้นแบบ สร้างด้วย AI · ปัดหรือกดลูกศรเพื่อดูแบบอื่น</span><span class="en">AI-generated concept images · swipe or use the arrows to browse</span></p>
+    </div>
+
+    <!-- MAGNET -->
+    <div id="magnet" class="sub">
+      <div class="prod flip" style="margin-top:0">
+      <figure class="prod-media reveal">
+        <img src="img/dragon-magnet.jpg" width="1080" height="720" loading="lazy"
+          alt="แม่เหล็กดินเผาต้นแบบ 6 ชิ้น รูปมังกร เมฆ ดอกบัว และเหรียญกลม พร้อมเทมเพลต ภาพเวิร์กช็อป และแม่เหล็กติดตู้เย็น"
+          data-alt-th="แม่เหล็กดินเผาต้นแบบ 6 ชิ้น รูปมังกร เมฆ ดอกบัว และเหรียญกลม พร้อมเทมเพลต ภาพเวิร์กช็อป และแม่เหล็กติดตู้เย็น"
+          data-alt-en="Six prototype clay magnets shaped as dragons, clouds, a lotus and a round medallion, with templates, a workshop scene and a magnet on a fridge">
+        <figcaption><span class="th">ต้นแบบสินค้า Dragon Magnet · ภาพจำลองสร้างด้วย ChatGPT</span><span class="en">Dragon Magnet prototypes · concept image generated with ChatGPT</span></figcaption>
+      </figure>
+      <div class="prod-text reveal">
+        <span class="kind">Workshop · Souvenir</span>
+        <h3>Dragon Magnet<small><span class="th">เวิร์กช็อปปั้นแม่เหล็กติดตู้เย็น</span><span class="en">Make-your-own fridge magnet</span></small></h3>
+        <p><span class="th">ปิดท้ายทริปด้วยการลงมือเอง เลือกทรง เลือกลาย แล้วตกแต่งด้วยดินราชบุรี ได้ของที่ระลึกชิ้นเดียวในโลกที่คุณทำเอง ลองออกแบบของคุณก่อนได้ข้างล่างนี้</span><span class="en">End the trip with your own hands. Pick a shape, pick your patterns and decorate it in Ratchaburi clay, for a one-of-a-kind piece you made. Try designing yours below.</span></p>
+        <ol class="msteps">
+          <li><span class="th">เลือกทรง</span><span class="en">Pick a shape</span></li>
+          <li><span class="th">ทาบลวดลาย</span><span class="en">Add patterns</span></li>
+          <li><span class="th">เผาและเคลือบ</span><span class="en">Fire &amp; glaze</span></li>
+          <li><span class="th">รับพร้อมแม่เหล็ก</span><span class="en">Get your magnet</span></li>
+        </ol>
+      </div>
+      </div>
+
+      <div class="studio-head reveal">
+        <h4><span class="th">ลองออกแบบแม่เหล็กของคุณ</span><span class="en">Design your own magnet</span></h4>
+        <p><span class="th">เริ่มจากต้นแบบจริง 6 ชิ้น หรือเลือกทรงและลายเองก็ได้</span><span class="en">Start from one of the six real prototypes, or build your own from scratch.</span></p>
+      </div>
+      <div class="studio reveal">
+        <div class="stage" id="m-stage">
+          <span class="stage-tag"><span class="th">ประตูตู้เย็นของคุณ</span><span class="en">Your fridge door</span></span>
+          <div id="m-preview" role="img"></div>
+          <figure class="real" id="m-real" aria-hidden="true"><img alt="" id="m-real-img"><figcaption><span class="th">ต้นแบบจริง</span><span class="en">Prototype</span></figcaption></figure>
+          <p class="stage-name" id="m-name" aria-live="polite"></p>
+        </div>
+        <div class="controls">
+          <div class="ctl">
+            <div class="ctl-h"><b><span class="th">Preset จากต้นแบบ</span><span class="en">Presets from our prototypes</span></b><span><span class="th">แบบเดียวกับแม่เหล็กต้นแบบ</span><span class="en">as in the concept set</span></span></div>
+            <div class="presets" id="m-presets"></div>
+          </div>
+          <div class="ctl">
+            <div class="ctl-h"><b><span class="th">ทรง</span><span class="en">Shape</span></b><span>6 <span class="th">ทรง</span><span class="en">shapes</span></span></div>
+            <div class="chips" id="m-shapes"></div>
+          </div>
+          <div class="ctl">
+            <div class="ctl-h"><b><span class="th">ลวดลาย</span><span class="en">Patterns</span></b><span><span class="th">เลือกทาบได้หลายลาย</span><span class="en">layer as many as you like</span></span></div>
+            <div class="chips multi" id="m-pats"></div>
+          </div>
+          <div class="ctl">
+            <div class="ctl-h"><b><span class="th">สีเคลือบ</span><span class="en">Glaze</span></b></div>
+            <div class="chips glazes" id="m-glazes"></div>
+          </div>
+          <div class="studio-actions">
+            <button class="btn primary" type="button" id="m-random" style="border:0;cursor:pointer;font-family:var(--font-body)"><span class="th">สุ่มแบบให้หน่อย</span><span class="en">Surprise me</span></button>
+          </div>
+          <p class="studio-note"><span class="th">ภาพจำลองเพื่อให้เห็นแนวทาง ชิ้นจริงปั้นและแต่งด้วยมือที่เวิร์กช็อป</span><span class="en">A simulation for ideas. The real piece is shaped and decorated by hand at the workshop.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRIP -->
+    <div class="trip" id="trip">
+      <div class="trip-head reveal">
+        <span class="kind">Tourism experience</span>
+        <h3><span class="th">แหล่งเรียนรู้ Dragon Jar</span><span class="en">The Dragon Jar learning trip</span></h3>
+        <p><span class="th">ทริปเดียวได้ครบ ดูของจริง ลองทำเอง และได้ของกลับบ้าน จองได้ผ่านบริษัทนำเที่ยว แพลตฟอร์มจองกิจกรรม หรือเว็บไซต์และโซเชียลของเรา</span><span class="en">One trip, the whole story: see the real craft, try it yourself, and leave with something you made. Book through tour operators, activity-booking platforms, or our website and social channels.</span></p>
+      </div>
+      <ol class="stations">
+        <li class="reveal">
+          <span class="no">01</span>
+          <h4><span class="th">ดูช่างปั้นโอ่งแบบดั้งเดิม</span><span class="en">Watch a traditional jar take shape</span></h4>
+          <p><span class="th">ช่างสาธิตการทำโอ่งมังกรแบบ original ตั้งแต่ขึ้นรูปจนแต่งลาย</span><span class="en">A potter demonstrates the original dragon jar, from throwing to the dragon relief.</span></p>
+        </li>
+        <li class="reveal">
+          <span class="no">02</span>
+          <h4><span class="th">ดูการทำเหยือกมังกร</span><span class="en">See a Dragon Jug being made</span></h4>
+          <p><span class="th">ภูมิปัญญาเดิมในรูปแบบใหม่ ดูว่าเหยือกหนึ่งใบเกิดขึ้นอย่างไร</span><span class="en">The same know-how in a new form. See how each jug comes to life.</span></p>
+        </li>
+        <li class="reveal">
+          <span class="no">03</span>
+          <h4><span class="th">พักกินไอติมในถ้วยมังกร</span><span class="en">Ice cream break in a dragon cup</span></h4>
+          <p><span class="th">ไอติมจากร้านท้องถิ่น เสิร์ฟในถ้วยเซรามิกลายมังกร</span><span class="en">Ice cream from a local maker, served in a ceramic dragon cup.</span></p>
+          <span class="take"><span class="th">ได้กลับบ้าน: ถ้วยมังกร 1 ใบ</span><span class="en">You keep: one dragon cup</span></span>
+        </li>
+        <li class="reveal">
+          <span class="no">04</span>
+          <h4><span class="th">เวิร์กช็อปปั้นแม่เหล็ก</span><span class="en">Magnet workshop</span></h4>
+          <p><span class="th">ลงมือแต่งลายแม่เหล็กติดตู้เย็นของตัวเอง</span><span class="en">Decorate your own fridge magnet in clay.</span></p>
+          <span class="take"><span class="th">ได้กลับบ้าน: แม่เหล็กที่ทำเอง</span><span class="en">You keep: the magnet you made</span></span>
+        </li>
+      </ol>
+    </div>
+
+    <p class="value reveal"><strong><span class="th">สิ่งที่ลูกค้าได้รับ</span><span class="en">What you get</span></strong> <span class="th">ของแท้จากดินราชบุรีที่รู้ที่มาและรู้ว่าใครปั้น ประสบการณ์ที่ได้ดูและลงมือทำจริง และรู้ว่าเงินที่จ่ายช่วยให้อาชีพช่างปั้นอยู่ต่อได้</span><span class="en">Genuine Ratchaburi clay pieces with a known origin and a named potter, a hands-on experience of the real craft, and the knowledge that what you spend helps keep potters in work.</span></p>
+  </div>
+</section>
+
+<!-- 05 BMC -->
+<section class="block" id="bmc">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">05 · Business Model Canvas</p>
+      <h2><span class="th">โมเดลธุรกิจ 9 ช่อง</span><span class="en">The business model on one canvas</span></h2>
+      <p><span class="th">ช่องตรงกลางคือคุณค่าที่เราส่งมอบ ฝั่งซ้ายคือสิ่งที่ต้องมี ฝั่งขวาคือวิธีไปถึงลูกค้า แถวล่างคือต้นทุนและรายได้</span><span class="en">The centre is the value we deliver. The left is what we need, the right is how we reach customers, and the bottom row is costs and revenue.</span></p>
+    </div>
+    <div class="bmc reveal">
+      <div class="cell kp"><span class="th-h">Key Partners</span><h3><span class="th">พันธมิตรหลัก</span><span class="en">Key partners</span></h3>
+        <ul>
+          <li><span class="th">โรงงานและช่างปั้นในราชบุรี</span><span class="en">Ratchaburi potteries and potters</span></li>
+          <li><span class="th">ผู้ผลิตบรรจุภัณฑ์และเคสกันกระแทก</span><span class="en">Packaging and protective-case makers</span></li>
+          <li><span class="th">ผู้ผลิตหรือร้านไอศกรีมท้องถิ่น</span><span class="en">Local ice cream makers</span></li>
+          <li><span class="th">บริษัทนำเที่ยวและไกด์ท้องถิ่น</span><span class="en">Tour operators and local guides</span></li>
+          <li><span class="th">ขนส่งสินค้าแตกหักง่าย</span><span class="en">Fragile-goods couriers</span></li>
+        </ul></div>
+      <div class="cell ka"><span class="th-h">Key Activities</span><h3><span class="th">กิจกรรมหลัก</span><span class="en">Key activities</span></h3>
+        <ul>
+          <li><span class="th">ควบคุมคุณภาพการผลิตและการเคลือบ</span><span class="en">Quality control of making and glazing</span></li>
+          <li><span class="th">จัดเวิร์กช็อปและนำชมโรงงาน</span><span class="en">Running workshops and pottery tours</span></li>
+          <li><span class="th">พัฒนาเว็บไซต์และระบบ QR Code</span><span class="en">Building the website and QR system</span></li>
+          <li><span class="th">บรรจุและจัดส่งสินค้า</span><span class="en">Packing and shipping</span></li>
+          <li><span class="th">การตลาดและประชาสัมพันธ์</span><span class="en">Marketing and promotion</span></li>
+        </ul></div>
+      <div class="cell kr"><span class="th-h">Key Resources</span><h3><span class="th">ทรัพยากรหลัก</span><span class="en">Key resources</span></h3>
+        <ul>
+          <li><span class="th">แหล่งดินและเตาเผาในราชบุรี</span><span class="en">Ratchaburi clay and kilns</span></li>
+          <li><span class="th">ช่างปั้นและทักษะดั้งเดิม</span><span class="en">Potters and traditional skills</span></li>
+          <li><span class="th">เว็บไซต์และฐานข้อมูลสินค้า</span><span class="en">Website and product database</span></li>
+        </ul></div>
+      <div class="cell vp"><span class="th-h">Value Propositions</span><h3><span class="th">คุณค่าที่ส่งมอบ</span><span class="en">Value propositions</span></h3>
+        <span class="grp">Product value</span>
+        <ul>
+          <li><span class="th">เหยือกดีไซน์ร่วมสมัยจากภูมิปัญญาโอ่งมังกร</span><span class="en">A contemporary jug from dragon-jar know-how</span></li>
+          <li><span class="th">วัสดุจากแหล่งผลิตดั้งเดิม</span><span class="en">Materials from the original source</span></li>
+          <li><span class="th">ลายมังกรทำมือ ไม่ซ้ำกัน</span><span class="en">Hand-made dragons, each unique</span></li>
+          <li><span class="th">QR Code ประวัติช่างประจำชิ้น</span><span class="en">A QR code naming each piece's potter</span></li>
+        </ul>
+        <span class="grp">Experience value</span>
+        <ul>
+          <li><span class="th">เรียนรู้การผลิตเครื่องปั้นดินเผา</span><span class="en">Learn how pottery is made</span></li>
+          <li><span class="th">ลองทำงานคราฟต์ด้วยตัวเอง</span><span class="en">Try the craft yourself</span></li>
+          <li><span class="th">ไอติมในถ้วยเซรามิกที่เอากลับไปใช้ซ้ำได้</span><span class="en">Ice cream in a reusable ceramic cup to keep</span></li>
+          <li><span class="th">ของที่ระลึกที่ทำเอง</span><span class="en">A souvenir you made</span></li>
+        </ul></div>
+      <div class="cell cr"><span class="th-h">Customer Relationships</span><h3><span class="th">ความสัมพันธ์</span><span class="en">Relationships</span></h3>
+        <ul>
+          <li><span class="th">QR Code ประจำเหยือก ดูประวัติสินค้า</span><span class="en">A QR code on every jug</span></li>
+          <li><span class="th">รับประกันและซ่อมเบื้องต้นตามเงื่อนไข</span><span class="en">Warranty and basic repair</span></li>
+          <li><span class="th">กลุ่มคอมมิวนิตี้ แจ้งข่าว คอลเลกชันใหม่ เวิร์กช็อป</span><span class="en">A community group for news, new collections and workshops</span></li>
+          <li><span class="th">สมาชิกสะสมแต้ม สิทธิพิเศษเมื่อกลับมาใช้บริการ</span><span class="en">Membership points and perks for returning customers</span></li>
+        </ul></div>
+      <div class="cell ch"><span class="th-h">Channels</span><h3><span class="th">ช่องทาง</span><span class="en">Channels</span></h3>
+        <ul>
+          <li><span class="th">บริษัทนำเที่ยว</span><span class="en">Tour operators</span></li>
+          <li><span class="th">แพลตฟอร์มจองกิจกรรมท่องเที่ยว</span><span class="en">Activity-booking platforms</span></li>
+          <li><span class="th">เว็บไซต์และโซเชียลมีเดีย</span><span class="en">Website and social media</span></li>
+        </ul></div>
+      <div class="cell cs"><span class="th-h">Customer Segments</span><h3><span class="th">กลุ่มลูกค้า</span><span class="en">Customer segments</span></h3>
+        <span class="grp">Primary</span>
+        <ul><li><span class="th">นักท่องเที่ยวไทยและต่างชาติ</span><span class="en">Thai and international travellers</span></li></ul>
+        <span class="grp">Secondary</span>
+        <ul><li><span class="th">นักสะสมงานคราฟต์และงานดีไซน์</span><span class="en">Craft and design collectors</span></li></ul></div>
+      <div class="cell cost"><span class="th-h">Cost Structure</span><h3><span class="th">โครงสร้างต้นทุน</span><span class="en">Cost structure</span></h3>
+        <div class="cols">
+          <div><span class="grp"><span class="th">ต้นทุนผลิตภัณฑ์</span><span class="en">Product costs</span></span>
+            <ul>
+              <li><span class="th">วัตถุดิบและค่าแรงช่างปั้น</span><span class="en">Clay and potters' wages</span></li>
+              <li><span class="th">ค่าเผาและเคลือบ</span><span class="en">Firing and glazing</span></li>
+              <li><span class="th">ออกแบบและผลิตแพ็กเกจ</span><span class="en">Packaging design and production</span></li>
+              <li><span class="th">โฟมกันกระแทกและค่าขนส่ง</span><span class="en">Protective foam and shipping</span></li>
+            </ul></div>
+          <div><span class="grp"><span class="th">ต้นทุนบริการและกิจกรรม</span><span class="en">Service and activity costs</span></span>
+            <ul>
+              <li><span class="th">ค่าเช่าหรือเตรียมพื้นที่</span><span class="en">Venue rent and set-up</span></li>
+              <li><span class="th">อุปกรณ์เวิร์กช็อป</span><span class="en">Workshop materials</span></li>
+              <li><span class="th">ไอศกรีมและถ้วย</span><span class="en">Ice cream and cups</span></li>
+              <li><span class="th">วิทยากรและผู้ดูแลกิจกรรม</span><span class="en">Instructors and staff</span></li>
+              <li><span class="th">การตลาดและเว็บไซต์</span><span class="en">Marketing and website</span></li>
+            </ul></div>
+        </div></div>
+      <div class="cell rev"><span class="th-h">Revenue Streams</span><h3><span class="th">รายได้</span><span class="en">Revenue streams</span></h3>
+        <div class="cols">
+          <div><span class="grp"><span class="th">จากผลิตภัณฑ์</span><span class="en">Products</span></span>
+            <ul>
+              <li><span class="th">เหยือกมังกร</span><span class="en">Dragon Jug sales</span></li>
+              <li><span class="th">ถ้วยไอติม (ซื้อแยกได้)</span><span class="en">Dragon Cups, sold separately too</span></li>
+            </ul></div>
+          <div><span class="grp"><span class="th">จากกิจกรรมและการท่องเที่ยว</span><span class="en">Activities and tourism</span></span>
+            <ul>
+              <li><span class="th">เวิร์กช็อปแม่เหล็ก</span><span class="en">Magnet workshop fees</span></li>
+              <li><span class="th">ค่าจัดทริปเรียนรู้</span><span class="en">Learning-trip fees</span></li>
+              <li><span class="th">ค่าเข้าชม</span><span class="en">Admission</span></li>
+            </ul></div>
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 COMMUNITY -->
+<section class="block" id="community">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">06 · Community Value &amp; Impact</p>
+      <h2><span class="th">ทุกชิ้นที่ขายได้ คือรายได้ที่กลับไปถึงมือช่าง</span><span class="en">Every piece sold is income back in a potter's hands</span></h2>
+    </div>
+    <div class="impact">
+      <div class="imp reveal"><h3><span class="th">สร้างงานให้ช่าง</span><span class="en">Work for potters</span></h3><p><span class="th">เหยือก ถ้วย และแม่เหล็กเป็นงานใหม่ที่ขายได้ทั้งปี โรงงานมีออร์เดอร์ต่อเนื่อง ช่างปั้น ช่างแต่งลาย และคนคุมเตามีงานทำ</span><span class="en">Jugs, cups and magnets are new products that sell all year, giving kilns steady orders and work for throwers, decorators and kiln keepers.</span></p></div>
+      <div class="imp reveal"><h3><span class="th">เพิ่มมูลค่าให้ภูมิปัญญา</span><span class="en">More value from the same skill</span></h3><p><span class="th">ชิ้นเล็กที่ใส่เรื่องราวและชื่อช่าง ขายได้ราคาดีกว่าการขายโอ่งเป็นใบ ๆ แบบเดิม</span><span class="en">Smaller pieces carrying a story and a potter's name earn more than selling jars by the unit.</span></p></div>
+      <div class="imp reveal"><h3><span class="th">รายได้กระจายในชุมชน</span><span class="en">Income spread through town</span></h3><p><span class="th">ร้านไอศกรีมท้องถิ่น ไกด์ และผู้ทำบรรจุภัณฑ์ได้รายได้ด้วย นักท่องเที่ยวยังใช้จ่ายต่อในร้านอาหารและที่พักในราชบุรี</span><span class="en">Local ice cream makers, guides and packaging makers share the income, and visitors spend more at Ratchaburi restaurants and stays.</span></p></div>
+      <div class="imp reveal"><h3><span class="th">สืบทอดอาชีพ</span><span class="en">Passing the craft on</span></h3><p><span class="th">เวิร์กช็อปเปิดโอกาสให้เยาวชนในราชบุรีมาเป็นผู้ช่วยสอนและฝึกกับช่างรุ่นเก๋า ภูมิปัญญาจะได้ไม่หายไปกับคนรุ่นเดียว</span><span class="en">Workshops give young people in Ratchaburi a role as assistants alongside master potters, so the skill outlives one generation.</span></p></div>
+      <div class="imp reveal"><h3><span class="th">ให้เกียรติช่าง</span><span class="en">Credit to the maker</span></h3><p><span class="th">QR Code บอกชื่อและเรื่องราวของช่างทุกชิ้น และขออนุญาตทุกครั้งก่อนถ่ายภาพหรือเผยแพร่เรื่องราวของช่าง</span><span class="en">Every QR code names the potter and tells their story, and we always ask permission before photographing or sharing it.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 SDGs -->
+<section class="block" id="sdgs">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">07 · SDGs &amp; Sustainability</p>
+      <h2><span class="th">รักษารากเหง้าไว้ แล้วเติบโตไปกับชุมชน</span><span class="en">Keep the roots, grow with the community</span></h2>
+    </div>
+    <div class="sdgs">
+      <div class="sdg sdg8 reveal">
+        <span class="badge"><span class="num">8</span>DECENT WORK &amp; ECONOMIC GROWTH</span>
+        <h3><span class="th">งานที่มีคุณค่าและการเติบโตทางเศรษฐกิจ</span><span class="en">Decent work and economic growth</span></h3>
+        <ul>
+          <li><span class="th">สร้างงานและค่าตอบแทนเป็นธรรมให้ช่างฝีมือท้องถิ่น</span><span class="en">Fair-paid work for local craftspeople</span></li>
+          <li><span class="th">ธุรกิจขนาดเล็กที่ใช้ภูมิปัญญาเป็นจุดขาย</span><span class="en">A small business built on local know-how</span> <span class="t"><span class="th">เป้าหมาย</span><span class="en">Target</span> 8.3</span></li>
+          <li><span class="th">การท่องเที่ยวยั่งยืนที่ส่งเสริมวัฒนธรรมและสินค้าท้องถิ่น</span><span class="en">Sustainable tourism that promotes local culture and products</span> <span class="t"><span class="th">เป้าหมาย</span><span class="en">Target</span> 8.9</span></li>
+        </ul>
+      </div>
+      <div class="sdg sdg11 reveal">
+        <span class="badge"><span class="num">11</span>SUSTAINABLE CITIES &amp; COMMUNITIES</span>
+        <h3><span class="th">เมืองและชุมชนที่ยั่งยืน</span><span class="en">Sustainable cities and communities</span></h3>
+        <ul>
+          <li><span class="th">ปกป้องและสืบทอดมรดกทางวัฒนธรรมของราชบุรี</span><span class="en">Protecting Ratchaburi's cultural heritage</span> <span class="t"><span class="th">เป้าหมาย</span><span class="en">Target</span> 11.4</span></li>
+          <li><span class="th">ทำให้แหล่งเรียนรู้และชุมชนช่างปั้นเป็นจุดหมายของนักท่องเที่ยว</span><span class="en">Making the potters' community a place travellers seek out</span></li>
+          <li><span class="th">ทำให้คนในพื้นที่ภูมิใจในอัตลักษณ์ของเมือง</span><span class="en">Building local pride in the city's identity</span></li>
+        </ul>
+      </div>
+      <div class="sdg sdg12 reveal">
+        <span class="badge"><span class="num">12</span>RESPONSIBLE CONSUMPTION &amp; PRODUCTION</span>
+        <h3><span class="th">การผลิตและการบริโภคที่ยั่งยืน</span><span class="en">Responsible consumption and production</span></h3>
+        <ul>
+          <li><span class="th">เสิร์ฟไอติมในถ้วยเซรามิกที่ใช้ซ้ำได้ แทนถ้วยใช้ครั้งเดียวทิ้ง</span><span class="en">Ice cream served in reusable ceramic cups instead of single-use ones</span> <span class="t"><span class="th">เป้าหมาย</span><span class="en">Target</span> 12.5</span></li>
+          <li><span class="th">กล่องหิ้วถ้วยออกแบบให้ใช้ซ้ำได้</span><span class="en">A carry box designed to be reused</span></li>
+          <li><span class="th">ของใช้ทนทาน มีบริการซ่อม ใช้ได้นาน</span><span class="en">Durable pieces with repair service, made to last</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="effects">
+      <div class="reveal"><h3><span class="th">ด้านเศรษฐกิจ</span><span class="en">Economy</span></h3><p><span class="th">รายได้หมุนเวียนอยู่ในชุมชน ทั้งช่าง ร้านค้า และไกด์</span><span class="en">Income circulates locally among potters, shops and guides.</span></p></div>
+      <div class="reveal"><h3><span class="th">ด้านสังคม</span><span class="en">Society</span></h3><p><span class="th">คนรุ่นใหม่กับช่างรุ่นเก่าได้ทำงานร่วมกันผ่านเวิร์กช็อป</span><span class="en">Young people and master potters work side by side in workshops.</span></p></div>
+      <div class="reveal"><h3><span class="th">ด้านวัฒนธรรม</span><span class="en">Culture</span></h3><p><span class="th">โอ่งมังกรยังมีที่ทางในชีวิตยุคใหม่ ไม่ได้อยู่แค่ในพิพิธภัณฑ์</span><span class="en">The dragon jar keeps a place in modern life, not just in museums.</span></p></div>
+      <div class="reveal"><h3><span class="th">ด้านสิ่งแวดล้อม</span><span class="en">Environment</span></h3><p><span class="th">ลดขยะถ้วยใช้ครั้งเดียว และใช้วัสดุธรรมชาติในพื้นที่</span><span class="en">Less single-use waste and natural, local materials.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 MARKETING -->
+<section class="block" id="marketing">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">08 · Marketing &amp; Target Audience</p>
+      <h2><span class="th">แบรนด์ ข้อความหลัก และคนที่เราอยากคุยด้วย</span><span class="en">The brand, the message, and who we're talking to</span></h2>
+    </div>
+    <div class="mk-top">
+      <div class="mk-card reveal">
+        <span class="k"><span class="th">ชื่อแบรนด์</span><span class="en">Brand name</span></span>
+        <span class="big">Dragon Jar</span>
+        <p><span class="th">ชื่อที่ต่างชาติอ่านออกและจำได้ทันที และพาไปถึงโอ่งมังกรราชบุรีตัวจริง</span><span class="en">Easy to read and remember anywhere, and it leads straight back to the original Ratchaburi dragon jar.</span></p>
+      </div>
+      <div class="mk-card reveal">
+        <span class="k"><span class="th">แนวคิดแบรนด์</span><span class="en">Brand concept</span></span>
+        <span class="big"><span class="th">ภูมิปัญญาเดิม ในขนาดที่พกกลับบ้านได้</span><span class="en">Old craft, take-home size</span></span>
+        <p><span class="th">เก็บดิน มือช่าง และลายมังกรไว้ครบ แต่เปลี่ยนเป็นของใช้ ของฝาก และประสบการณ์ที่เข้ากับคนวันนี้</span><span class="en">Same clay, same hands, same dragon, reshaped into everyday objects, souvenirs and experiences that fit people today.</span></p>
+      </div>
+      <div class="mk-card km reveal">
+        <span class="k">Key Message</span>
+        <span class="big"><span class="th">“มังกรราชบุรี ที่คุณถือกลับบ้านได้”</span><span class="en">“Ratchaburi's dragon, made to take home.”</span></span>
+        <p><span class="th">ทุกชิ้นปั้นด้วยมือจากดินราชบุรี บอกชื่อช่างผู้ทำ และช่วยให้อาชีพนี้อยู่ต่อ</span><span class="en">Every piece is hand-made from Ratchaburi clay, names its potter, and helps keep the craft alive.</span></p>
+      </div>
+    </div>
+    <div class="targets">
+      <div class="target reveal">
+        <span class="tier">Primary target</span>
+        <h3><span class="th">นักท่องเที่ยวไทยและต่างชาติ</span><span class="en">Thai and international travellers</span></h3>
+        <p><span class="th">อยากได้ประสบการณ์ท้องถิ่นของแท้ และของฝากที่มีเรื่องเล่า พกขึ้นเครื่องได้ จึงเน้นทริปแหล่งเรียนรู้ ถ้วยไอติม และแม่เหล็ก</span><span class="en">They want an authentic local experience and a souvenir with a story that fits in a suitcase, so we lead with the trip, the cups and the magnets.</span></p>
+      </div>
+      <div class="target reveal">
+        <span class="tier">Secondary target</span>
+        <h3><span class="th">นักสะสมงานคราฟต์และงานดีไซน์</span><span class="en">Craft and design collectors</span></h3>
+        <p><span class="th">ให้ค่ากับงานทำมือ ที่มา และความหายาก จึงเน้นเหยือกมังกร QR Code ประวัติช่าง หมายเลขประจำชิ้น และคอลเลกชันใหม่</span><span class="en">They value handwork, provenance and rarity, so we lead with the Dragon Jug, its potter QR code, serial numbers and new collections.</span></p>
+      </div>
+    </div>
+    <div class="tactics">
+      <div class="tactic reveal"><h4><span class="th">ร่วมกับบริษัทนำเที่ยวและไกด์</span><span class="en">Tour operators and guides</span></h4><p><span class="th">ใส่ทริป Dragon Jar ในโปรแกรมเที่ยวราชบุรี และขายผ่านแพลตฟอร์มจองกิจกรรม</span><span class="en">Add the Dragon Jar trip to Ratchaburi itineraries and sell it on activity-booking platforms.</span></p></div>
+      <div class="tactic reveal"><h4><span class="th">คอนเทนต์สองภาษา</span><span class="en">Bilingual content</span></h4><p><span class="th">คลิปสั้นเบื้องหลังช่างปั้นและเวิร์กช็อปบนโซเชียล เว็บไซต์ไทยและอังกฤษ</span><span class="en">Short behind-the-scenes clips of potters and workshops on social media, and a Thai–English website.</span></p></div>
+      <div class="tactic reveal"><h4><span class="th">QR Code ทุกชิ้น</span><span class="en">A QR code on every piece</span></h4><p><span class="th">ลูกค้าสแกนเจอเรื่องราวของช่าง แล้วแชร์ต่อได้ทันที</span><span class="en">Customers scan to meet the potter, and can share the story on the spot.</span></p></div>
+      <div class="tactic reveal"><h4><span class="th">คอมมิวนิตี้และสมาชิก</span><span class="en">Community and membership</span></h4><p><span class="th">กลุ่มแจ้งคอลเลกชันใหม่และรอบเวิร์กช็อป พร้อมแต้มสะสม ให้ลูกค้ากลับมาซ้ำ ไม่ใช่มาครั้งเดียว</span><span class="en">A group for new collections and workshop dates, plus points that bring people back, not just once.</span></p></div>
+    </div>
+    <p class="remember reveal"><span class="th">สิ่งที่อยากให้จำ: <em>ทุกชิ้นมีชื่อช่าง และทุกชิ้นมาจากดินราชบุรี</em></span><span class="en">What we want you to remember: <em>every piece has a potter's name, and every piece is Ratchaburi clay.</em></span></p>
+  </div>
+</section>
+
+<!-- 09 TAKE ACTION -->
+<section class="block" id="action">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="label">09 · Take Action</p>
+      <h2><span class="th">ช่วยให้มังกรราชบุรีอยู่ต่อได้ 3 ทาง</span><span class="en">Three ways to keep the dragon alive</span></h2>
+    </div>
+    <div class="acts">
+      <div class="act reveal">
+        <span class="n">01</span>
+        <h3><span class="th">เป็นเจ้าของสักชิ้น</span><span class="en">Own a piece</span></h3>
+        <p><span class="th">เลือกเหยือกหรือถ้วยมังกร เงินที่จ่ายส่งตรงถึงโรงงานและช่างในราชบุรี</span><span class="en">Choose a Dragon Jug or Cup. What you pay goes straight to Ratchaburi potteries and potters.</span></p>
+        <a class="btn primary" href="#jug"><span class="th">ดูสินค้า</span><span class="en">See products</span></a>
+      </div>
+      <div class="act reveal">
+        <span class="n">02</span>
+        <h3><span class="th">มาเที่ยวและลงมือปั้น</span><span class="en">Visit and make</span></h3>
+        <p><span class="th">มาดูช่างตัวจริง กินไอติมในถ้วยมังกร แล้วปั้นแม่เหล็กของตัวเองกลับบ้าน</span><span class="en">Watch real potters, enjoy ice cream in a dragon cup, and make your own magnet to take home.</span></p>
+        <a class="btn ghost" href="#trip"><span class="th">ดูทริป</span><span class="en">See the trip</span></a>
+      </div>
+      <div class="act reveal">
+        <span class="n">03</span>
+        <h3><span class="th">เล่าต่อ</span><span class="en">Share the story</span></h3>
+        <p><span class="th">แชร์เรื่องราวโอ่งมังกรและช่างปั้น ให้คนรุ่นใหม่และเพื่อนต่างชาติรู้จักภูมิปัญญานี้</span><span class="en">Share the dragon jar and its potters so younger people and friends abroad get to know the craft.</span></p>
+        <a class="btn ghost" href="#story"><span class="th">อ่านเรื่องราว</span><span class="en">Read the story</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 REFS -->
+<section class="block" id="refs">
+  <div class="wrap">
+    <div class="head">
+      <p class="label">10 · References, Credits &amp; AI Disclosure</p>
+      <h2><span class="th">แหล่งอ้างอิงและเครดิต</span><span class="en">References and credits</span></h2>
+    </div>
+    <div class="refs">
+      <div>
+        <h3><span class="th">แหล่งอ้างอิง</span><span class="en">References</span></h3>
+        <ol>
+          <li>โอ่งมังกรราชบุรี: เครื่องปั้นดินเผาที่มีอัตลักษณ์เฉพาะพื้นที่. <i>วารสารมนุษยศาสตร์และสังคมศาสตร์ มหาวิทยาลัยราชภัฏธนบุรี</i>. <a href="https://so02.tci-thaijo.org/index.php/human_dru/article/view/258541" target="_blank" rel="noopener">tci-thaijo.org</a></li>
+          <li>โรงงานเถ้าฮงไถ่. Wongnai. <a href="https://www.wongnai.com/attractions/462464lW-%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%96%E0%B9%89%E0%B8%B2%E0%B8%AE%E0%B8%87%E0%B9%84%E0%B8%96%E0%B9%88" target="_blank" rel="noopener">wongnai.com</a></li>
+          <li>United Nations. (n.d.). <i>The 17 Goals</i>. <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener">sdgs.un.org/goals</a></li>
+        </ol>
+      </div>
+      <div>
+        <h3><span class="th">เครดิตสื่อ</span><span class="en">Media credits</span></h3>
+        <ul>
+          <li><span class="th">ภาพถ่ายช่างขึ้นรูปโอ่ง ช่างยกโอ่งเข้าเตา และโอ่งมังกรที่เสร็จแล้ว: เที่ยวราชบุรี.com</span><span class="en">Photos of throwing, kiln loading and a finished jar: เที่ยวราชบุรี.com</span></li>
+          <li><span class="th">ภาพสินค้า Dragon Jug, Dragon Cup และ Dragon Magnet: ภาพจำลองต้นแบบ สร้างด้วย ChatGPT</span><span class="en">Dragon Jug, Dragon Cup and Dragon Magnet images: concept images generated with ChatGPT</span></li>
+          <li><span class="th">ภาพประกอบลายเส้นขั้นตอนการทำ และตัวลองออกแบบแม่เหล็ก: Claude (AI)</span><span class="en">Process line illustrations and the magnet designer: Claude (AI)</span></li>
+        </ul>
+        <h3 style="margin-top:var(--s3)"><span class="th">สมาชิกกลุ่ม “เสี่ยฮิมสั่งลุย”</span><span class="en">Team “เสี่ยฮิมสั่งลุย” (Sia Him Sang Lui)</span></h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th><span class="th">ชื่อ–สกุล</span><span class="en">Name</span></th><th><span class="th">รหัสนักศึกษา</span><span class="en">Student ID</span></th></tr></thead>
+            <tbody>
+              <tr><td>ธีร์ชากรณ์ ประกายเลิศลักษณ์ (ซัน)</td><td class="id">1690205693</td></tr>
+              <tr><td>อิบราฮิม ดาโบ้ (ฮิม)</td><td class="id">1690205933</td></tr>
+              <tr><td>วุฒิพงษ์ ทองแสง (เอ็ม)</td><td class="id">1690204076</td></tr>
+              <tr><td>ณปภัช ดิษฐสุวรรณ (เกล)</td><td class="id">1690204340</td></tr>
+              <tr><td>สรณ์สิริ บึงโบราณ (หมิงจู)</td><td class="id">1690202864</td></tr>
+              <tr><td>ภัทรวดี ตระกูลไตรพฤกษ์ (ภัทร)</td><td class="id">1690208945</td></tr>
+              <tr><td>สิรภัทร ขำสม (โอ๊ก)</td><td class="id">1690204571</td></tr>
+              <tr><td>พัสกร ฉิมโหมด (ออกัส)</td><td class="id">1690208739</td></tr>
+              <tr><td>เอื้อมทิวา ทองอินทร์ (ปราง)</td><td class="id">1690205339</td></tr>
+              <tr><td>ปัณฑธร เก่งกิจการ (ฟาร์ม)</td><td class="id">1690212137</td></tr>
+              <tr><td>กันติชา อินต๊ะมา (แก้ว)</td><td class="id">1690208366</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="ai">
+        <h3><span class="th">คำชี้แจงการใช้ Generative AI</span><span class="en">Generative AI disclosure</span></h3>
+        <p><span class="th">โครงงานนี้ใช้ Claude ช่วยร่างข้อความ จัดโครงสร้าง แปลเป็นภาษาอังกฤษ และทำภาพประกอบลายเส้นบนเว็บไซต์ และใช้ ChatGPT สร้างภาพจำลองต้นแบบสินค้า</span><span class="en">This project used Claude to help draft text, structure the site, translate it into English and draw the line illustrations, and used ChatGPT to generate the product concept images.</span></p>
+        <p><span class="th">สมาชิกกลุ่มได้ตรวจสอบข้อเท็จจริง แก้ไขเนื้อหา และเรียบเรียงใหม่ด้วยตนเอง ข้อมูลประวัติศาสตร์และข้อมูลชุมชนอ้างอิงจากแหล่งที่ระบุไว้ข้างต้น ภาพสินค้าเป็นภาพจำลองแนวคิด ไม่ใช่ภาพถ่ายสินค้าจริง การตัดสินใจด้านแนวคิดและผลงานสุดท้ายเป็นความรับผิดชอบของกลุ่ม</span><span class="en">Team members checked the facts, edited the content and rewrote it themselves. Historical and community information comes from the sources above. Product images are concept visuals, not photos of real products. The concept and final work are the team's responsibility.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Dragon Jar · <span class="th">โครงงาน</span><span class="en">Project</span> GE012 LOCAL HERO “ของดี บ้านฉัน” · <span class="th">กลุ่ม</span><span class="en">Team</span> เสี่ยฮิมสั่งลุย</span>
+    <span><span class="th">ภูมิปัญญาหัตถกรรมพื้นบ้าน จังหวัดราชบุรี</span><span class="en">Traditional pottery of Ratchaburi, Thailand</span></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var META={
+    th:{title:'Dragon Jar · โอ่งมังกรราชบุรี',desc:'Dragon Jar เหยือกมังกรทำมือจากดินราชบุรี ถ้วยไอติมลายมังกร เวิร์กช็อปแม่เหล็ก และแหล่งเรียนรู้โอ่งมังกร'},
+    en:{title:'Dragon Jar · Ratchaburi Dragon Jar',desc:'Dragon Jar: a hand-made dragon jug from Ratchaburi clay, dragon ice cream cups, a magnet workshop and a learning trip to real potters.'}
+  };
+  function lang(){return root.getAttribute('lang')==='en'?'en':'th'}
+
+  /* ---------- theme ---------- */
+  var tBtn=document.getElementById('theme-btn'), tLabel=document.getElementById('theme-label');
+  function theme(){
+    var t=root.getAttribute('data-theme');
+    if(t==='light'||t==='dark') return t;
+    return window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  }
+  function renderTheme(){
+    var light=theme()==='light', en=lang()==='en';
+    tLabel.textContent=light?(en?'Dark mode':'โหมดสีเข้ม'):(en?'Light mode':'โหมดสีขาว');
+    tBtn.setAttribute('aria-pressed',String(light));
+  }
+  tBtn.addEventListener('click',function(){
+    var n=theme()==='light'?'dark':'light';
+    root.setAttribute('data-theme',n);
+    try{localStorage.setItem('jar-theme',n)}catch(e){}
+    renderTheme();
+  });
+
+  /* ---------- language ---------- */
+  function applyLang(l){
+    root.setAttribute('lang',l);
+    document.title=META[l].title;
+    var md=document.querySelector('meta[name="description"]'); if(md) md.setAttribute('content',META[l].desc);
+    document.querySelectorAll('[data-alt-'+l+']').forEach(function(el){el.setAttribute('alt',el.getAttribute('data-alt-'+l))});
+    document.querySelectorAll('[data-aria-'+l+']').forEach(function(el){el.setAttribute('aria-label',el.getAttribute('data-aria-'+l))});
+    document.querySelectorAll('[data-set-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-set-lang')===l))});
+    renderTheme();
+    if(window.__cfRender) window.__cfRender(true);
+    if(window.__mRender) window.__mRender();
+  }
+  document.querySelectorAll('[data-set-lang]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var l=b.getAttribute('data-set-lang');
+      try{localStorage.setItem('jar-lang',l)}catch(e){}
+      applyLang(l);
+    });
+  });
+  applyLang(lang());
+
+  /* ---------- menu, section tracker, scroll progress ---------- */
+  var nav=document.getElementById('nav'), mBtn=document.getElementById('menu-btn'), panel=document.getElementById('menu-panel');
+  var links=[].slice.call(panel.querySelectorAll('a')), nowEl=document.getElementById('now'), prog=document.getElementById('progress');
+  links.forEach(function(a,i){a.style.transitionDelay=(i*25)+'ms'});
+  function setMenu(open){
+    nav.classList.toggle('menu-open',open);
+    mBtn.setAttribute('aria-expanded',String(open));
+    links.forEach(function(a){a.tabIndex=open?0:-1});
+  }
+  setMenu(false);
+  mBtn.addEventListener('click',function(){setMenu(!nav.classList.contains('menu-open'))});
+  links.forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('menu-open')){setMenu(false);mBtn.focus()}});
+  document.addEventListener('click',function(e){if(nav.classList.contains('menu-open')&&!nav.contains(e.target)) setMenu(false)});
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('data-sec'))});
+  var ticking=false;
+  function onScroll(){
+    ticking=false;
+    var y=window.scrollY, h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.setProperty('--sp',h>0?Math.min(1,y/h):0);
+    var idx=0, line=y+window.innerHeight*.3;
+    secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top+y<=line) idx=i});
+    links.forEach(function(a,i){a.classList.toggle('cur',i===idx)});
+    var a=links[idx];
+    nowEl.innerHTML='<b>'+String(idx+1).padStart(2,'0')+'</b>'+a.querySelector('.nm').innerHTML;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+  onScroll();
+
+  /* ---------- scroll reveal ---------- */
+  var targets=document.querySelectorAll('.reveal,.stations');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    targets.forEach(function(el,i){
+      var sib=el.parentElement?Array.prototype.indexOf.call(el.parentElement.children,el):0;
+      el.style.transitionDelay=Math.min(sib,5)*70+'ms';
+      io.observe(el);
+    });
+  }else{targets.forEach(function(el){el.classList.add('in')})}
+
+  /* ---------- magnet studio ---------- */
+  (function(){
+    var prev=document.getElementById('m-preview'); if(!prev) return;
+    var SHAPES={
+      circle:{th:'วงกลม',en:'Circle',p:'<circle cx="100" cy="100" r="90"/>'},
+      oval:{th:'วงรี',en:'Oval',p:'<ellipse cx="100" cy="100" rx="96" ry="70"/>'},
+      cloud:{th:'ก้อนเมฆ',en:'Cloud',p:'<circle cx="60" cy="112" r="40"/><circle cx="100" cy="82" r="48"/><circle cx="144" cy="104" r="42"/><circle cx="82" cy="134" r="32"/><circle cx="126" cy="134" r="32"/><rect x="36" y="112" width="132" height="54" rx="27"/>'},
+      lotus:{th:'ดอกบัว',en:'Lotus',p:'<ellipse cx="100" cy="92" rx="34" ry="66"/><ellipse cx="100" cy="92" rx="30" ry="60" transform="rotate(-38 100 158)"/><ellipse cx="100" cy="92" rx="30" ry="60" transform="rotate(38 100 158)"/><ellipse cx="100" cy="108" rx="26" ry="50" transform="rotate(-70 100 158)"/><ellipse cx="100" cy="108" rx="26" ry="50" transform="rotate(70 100 158)"/><ellipse cx="100" cy="158" rx="70" ry="24"/>'},
+      hex:{th:'หกเหลี่ยม',en:'Hexagon',p:'<path d="M55 22 H145 L192 100 L145 178 H55 L8 100 Z"/>'},
+      arch:{th:'ซุ้มโค้ง',en:'Arch',p:'<path d="M28 186 V96 A72 72 0 0 1 172 96 V186 Q172 190 168 190 H32 Q28 190 28 186 Z"/>'}
+    };
+    var PATS={
+      dragon:{th:'มังกร',en:'Dragon'},
+      clouds:{th:'เมฆมงคล',en:'Auspicious clouds'},
+      scales:{th:'เกล็ดมังกร',en:'Dragon scales'},
+      waves:{th:'คลื่นน้ำ',en:'Waves'},
+      lotus:{th:'ดอกบัว',en:'Lotus'},
+      pearl:{th:'ไข่มุกไฟ',en:'Flaming pearl'}
+    };
+    var ORDER=['scales','waves','clouds','lotus','dragon','pearl'];
+    var GLAZES={
+      brown:{th:'น้ำตาลเคลือบ',en:'Brown glaze',rim:['#9a5431','#5e2f19'],gr:['#a85d36','#86452a'],m:'#f2e3c9',a:'#6b3720'},
+      cream:{th:'ครีมดินดิบ',en:'Raw cream',rim:['#a85c33','#6d361d'],gr:['#e6cfae','#c9a67b'],m:'#fbf2e3',a:'#94532f'},
+      black:{th:'ดำลายทอง',en:'Black & gold',rim:['#3b2a20','#160e0a'],gr:['#3a2a20','#24180f'],m:'#dcae52',a:'#7a5418'},
+      celadon:{th:'เขียวศิลาดล',en:'Celadon',rim:['#5b7b69','#33493d'],gr:['#9ab9a6','#7a9b88'],m:'#f1f4ea',a:'#3f5a4a'}
+    };
+    var PRESETS=[
+      {img:'img/magnet-coil.png',th:'มังกรขด',en:'Coiled dragon',d:{shape:'oval',pats:['scales','dragon','clouds'],glaze:'brown'}},
+      {img:'img/magnet-cloud.png',th:'เมฆมงคล',en:'Lucky cloud',d:{shape:'cloud',pats:['clouds'],glaze:'cream'}},
+      {img:'img/magnet-rising.png',th:'มังกรเลื้อย',en:'Rising dragon',d:{shape:'arch',pats:['dragon','pearl'],glaze:'brown'}},
+      {img:'img/magnet-lotus.png',th:'ดอกบัว',en:'Lotus',d:{shape:'lotus',pats:['lotus'],glaze:'cream'}},
+      {img:'img/magnet-medallion.png',th:'เหรียญมังกร',en:'Dragon medallion',d:{shape:'circle',pats:['dragon','clouds','pearl'],glaze:'black'}},
+      {img:'img/magnet-wisp.png',th:'เมฆพลิ้ว',en:'Drifting cloud',d:{shape:'oval',pats:['clouds','waves'],glaze:'cream'}}
+    ];
+    var CL='M-26 8 c-11 0 -13 -15 -2 -17 c0 -13 18 -15 22 -4 c5 -11 22 -9 22 4 c11 -2 15 13 4 17 z';
+    function cloudMotif(x,y,k,big){
+      var inner=big?'<path d="'+CL+'" transform="translate(0 1) scale(.66)" fill="none" stroke="A" stroke-width="1.2"/><path d="'+CL+'" transform="translate(0 2) scale(.34)" fill="none" stroke="A" stroke-width="1.6"/>'
+        :'<path d="M-12 1 c0 -7 9 -7 9 0 c0 4 -5 4 -5 1 M8 2 c0 -7 9 -7 9 0" stroke="A" stroke-width="1.6" fill="none" stroke-linecap="round"/>';
+      return '<g transform="translate('+x+' '+y+') scale('+k+')"><path d="'+CL+'" fill="M" stroke="A" stroke-width="'+(big?1.2:1.6)+'"/>'+inner+'</g>';
+    }
+    function lotusFlower(){
+      var s='<g transform="translate(100 112)">', ang=[-62,-32,0,32,62];
+      ang.forEach(function(a){var sc=a===0?1:(Math.abs(a)>40?.7:.86);
+        s+='<g transform="rotate('+a+' 0 30) scale('+sc+')"><path d="M0 -48 C20 -26 20 10 0 30 C-20 10 -20 -26 0 -48Z" fill="M" stroke="A" stroke-width="1.8"/><path d="M0 -34 V18" stroke="A" stroke-width="1.2" opacity=".6"/></g>';});
+      s+='<path d="M-46 32 Q0 48 46 32 Q0 22 -46 32Z" fill="M" stroke="A" stroke-width="1.8"/></g>';
+      return s;
+    }
+    function waves(){
+      var s='<g fill="none" stroke="M" stroke-width="3" stroke-linecap="round">';
+      for(var r=0;r<4;r++){var y=150+r*15, off=r%2?10:0;
+        for(var x=-20+off;x<220;x+=20){s+='<path d="M'+x+' '+y+' a10 10 0 0 1 20 0"/><path d="M'+(x+5)+' '+y+' a5 5 0 0 1 10 0" stroke-width="2"/>';}}
+      return s+'</g>';
+    }
+    var DRAGON='<g transform="translate(-22 -39) scale(.68)">'+
+      '<path d="M252 300 C 205 324, 122 314, 96 272 C 76 238, 112 214, 152 228 C 192 242, 218 226, 214 190" stroke="M" stroke-width="24" stroke-linecap="round" fill="none"/>'+
+      '<path d="M252 300 C 205 324, 122 314, 96 272 C 76 238, 112 214, 152 228 C 192 242, 218 226, 214 190" stroke="url(#ID-sc)" stroke-width="17" stroke-linecap="round" fill="none"/>'+
+      '<path d="M244 290 C 202 310, 130 302, 106 266 C 92 242, 120 222, 152 236" stroke="A" stroke-width="6" stroke-dasharray="4 6" fill="none"/>'+
+      '<path d="M252 300 q18 -2 24 -16 q-2 12 8 16 q-12 2 -14 14 q-6 -10 -18 -14z" fill="M"/>'+
+      '<g stroke="M" stroke-linecap="round" fill="none"><path d="M186 238 C 182 256, 170 266, 156 270" stroke-width="9"/><path d="M156 270 l-10 -4 M156 270 l-11 3 M156 270 l-6 9" stroke-width="4"/><path d="M126 306 C 118 322, 104 330, 90 332" stroke-width="9"/><path d="M90 332 l-10 -5 M90 332 l-11 2 M90 332 l-7 8" stroke-width="4"/><path d="M110 252 C 96 246, 86 236, 82 224" stroke-width="8"/><path d="M82 224 l-9 -3 M82 224 l-4 -10 M82 224 l4 -10" stroke-width="3.5"/></g>'+
+      '<g transform="translate(212 166) scale(1.2)"><path d="M6 -2 q14 -10 10 -22 q10 10 6 22 q12 -6 14 -16 q6 16 -10 26z" fill="M" opacity=".85"/><path d="M-2 -12 C 2 -28, 14 -36, 26 -38 M8 -28 l10 -2" stroke="M" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M-10 -12 C -8 -28, 0 -38, 12 -42" stroke="M" stroke-width="3" stroke-linecap="round" fill="none"/>'+
+      '<path d="M4 2 C -2 -14, -24 -18, -40 -11 L -54 -9 C -61 -8, -63 -1, -57 2 L -42 5 C -30 8, -10 12, 4 8 Z" fill="M"/><path d="M-6 11 C -20 18, -36 22, -50 17 C -44 24, -24 28, -2 19 Z" fill="M"/><path d="M-44 6 l3 4 l3 -4 l3 4 l3 -4 l3 4" stroke="A" stroke-width="1.4" fill="none"/><circle cx="-22" cy="-6" r="4.4" fill="A"/><circle cx="-23" cy="-6" r="1.8" fill="M"/><path d="M-30 -12 q8 -6 16 -2" stroke="A" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M-56 -6 C -72 -22, -84 -2, -100 -14" stroke="M" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M-50 18 C -66 30, -80 22, -94 34" stroke="M" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g>';
+    var PEARL='<g transform="translate(-22 -39) scale(.68)"><path d="M74 112 q-10 -14 2 -26 q-2 12 8 14 q-2 -14 12 -18 q-6 12 2 20" fill="M" stroke="A" stroke-width="1.5"/><circle cx="84" cy="122" r="12" fill="M" stroke="A" stroke-width="2.5"/><path d="M77 118 a7 7 0 0 1 8 -3" stroke="A" stroke-width="2" fill="none" stroke-linecap="round"/></g>';
+    function motif(k,d){
+      if(k==='dragon') return DRAGON;
+      if(k==='pearl') return PEARL;
+      if(k==='clouds') return (d.pats.indexOf('dragon')>-1||d.pats.indexOf('lotus')>-1?'':cloudMotif(104,104,2.3,true))+cloudMotif(152,48,.95)+cloudMotif(46,156,1)+cloudMotif(160,160,.8)+cloudMotif(44,70,.7);
+      if(k==='lotus') return lotusFlower();
+      if(k==='waves') return waves();
+      if(k==='scales') return '<rect x="-10" y="-10" width="220" height="220" fill="url(#ID-fld)" opacity=".7"/>';
+      return '';
+    }
+    var uid=0;
+    function build(d){
+      var id='mg'+(uid++), g=GLAZES[d.glaze], sh=SHAPES[d.shape].p, inner='translate(100 100) scale(.84) translate(-100 -100)';
+      var innerShape=sh.replace(/<(\w+) /g,function(m,t){return '<'+t+' data-x '}).replace(/data-x ([^>]*?)(\/?)>/g,function(m,attrs,sl){
+        var tm=attrs.match(/transform="([^"]*)"/), base=attrs.replace(/\s*transform="[^"]*"/,'');
+        return base+' transform="'+inner+(tm?' '+tm[1]:'')+'"'+sl+'>';});
+      var body='';
+      ORDER.forEach(function(k){if(d.pats.indexOf(k)>-1) body+=motif(k,d)});
+      body=body.replace(/ID-/g,id+'-').replace(/"M"/g,'"'+g.m+'"').replace(/"A"/g,'"'+g.a+'"');
+      return '<svg viewBox="-6 -6 212 212" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>'+
+        '<linearGradient id="'+id+'-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+g.rim[0]+'"/><stop offset="1" stop-color="'+g.rim[1]+'"/></linearGradient>'+
+        '<radialGradient id="'+id+'-gr" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="'+g.gr[0]+'"/><stop offset="1" stop-color="'+g.gr[1]+'"/></radialGradient>'+
+        '<linearGradient id="'+id+'-hl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
+        '<pattern id="'+id+'-sc" width="9" height="7" patternUnits="userSpaceOnUse"><rect width="9" height="7" fill="'+g.m+'"/><path d="M0 7 a4.5 4.5 0 0 1 9 0 M-4.5 3.5 a4.5 4.5 0 0 1 9 0 M4.5 3.5 a4.5 4.5 0 0 1 9 0" fill="none" stroke="'+g.a+'" stroke-opacity=".55" stroke-width="1.1"/></pattern>'+
+        '<pattern id="'+id+'-fld" width="16" height="12" patternUnits="userSpaceOnUse"><path d="M0 12 a8 8 0 0 1 16 0 M-8 6 a8 8 0 0 1 16 0 M8 6 a8 8 0 0 1 16 0" fill="none" stroke="'+g.m+'" stroke-width="1.6"/></pattern>'+
+        '<clipPath id="'+id+'-cl">'+innerShape+'</clipPath>'+
+        '<filter id="'+id+'-sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#000" flood-opacity=".42"/></filter>'+
+        '<filter id="'+id+'-rl" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="-.8" dy="-.8" stdDeviation=".4" flood-color="#fff" flood-opacity=".35" result="h"/><feDropShadow in="h" dx="1.3" dy="1.9" stdDeviation=".9" flood-color="#000" flood-opacity=".5"/></filter>'+
+        '</defs>'+
+        '<g filter="url(#'+id+'-sh)" fill="url(#'+id+'-rim)">'+sh+'</g>'+
+        '<g fill="url(#'+id+'-gr)">'+innerShape+'</g>'+
+        '<g clip-path="url(#'+id+'-cl)"><g filter="url(#'+id+'-rl)">'+body+'</g></g>'+
+        '<g fill="url(#'+id+'-hl)">'+sh+'</g></svg>';
+    }
+    var state={shape:'oval',pats:['scales','dragon','clouds'],glaze:'brown'};
+    var elS=document.getElementById('m-shapes'), elP=document.getElementById('m-pats'), elG=document.getElementById('m-glazes'), elPr=document.getElementById('m-presets'), elN=document.getElementById('m-name');
+    function L(o){return o[lang()]}
+    function mk(parent,html,onclick){var b=document.createElement('button');b.type='button';b.innerHTML=html;b.addEventListener('click',onclick);parent.appendChild(b);return b}
+    var bS={},bP={},bG={},bPr=[];
+    Object.keys(SHAPES).forEach(function(k){bS[k]=mk(elS,'',function(){state.shape=k;render(true)})});
+    Object.keys(PATS).forEach(function(k){bP[k]=mk(elP,'',function(){var i=state.pats.indexOf(k);if(i>-1)state.pats.splice(i,1);else state.pats.push(k);render(true)})});
+    Object.keys(GLAZES).forEach(function(k){bG[k]=mk(elG,'',function(){state.glaze=k;render(true)})});
+    PRESETS.forEach(function(p,i){var b=mk(elPr,'<img src="'+p.img+'" alt="" loading="lazy"><span></span>',function(){state={shape:p.d.shape,pats:p.d.pats.slice(),glaze:p.d.glaze};render(true)});bPr.push(b)});
+    function same(a,b){return a.shape===b.shape&&a.glaze===b.glaze&&a.pats.length===b.pats.length&&a.pats.every(function(x){return b.pats.indexOf(x)>-1})}
+    function labels(){
+      Object.keys(SHAPES).forEach(function(k){bS[k].innerHTML='<svg viewBox="0 0 200 200" fill="currentColor" aria-hidden="true">'+SHAPES[k].p+'</svg>'+L(SHAPES[k])});
+      Object.keys(PATS).forEach(function(k){bP[k].textContent=L(PATS[k])});
+      Object.keys(GLAZES).forEach(function(k){var g=GLAZES[k];bG[k].innerHTML='<span class="sw" style="background:linear-gradient(135deg,'+g.gr[0]+' 50%,'+g.m+' 50%)"></span>'+L(g)});
+      PRESETS.forEach(function(p,i){bPr[i].querySelector('span:last-child').textContent=L(p)});
+    }
+    function render(anim){
+      labels();
+      prev.innerHTML=build(state);
+      var sv=prev.firstChild; if(anim){sv.classList.add('pop')}
+      Object.keys(bS).forEach(function(k){bS[k].setAttribute('aria-pressed',String(state.shape===k))});
+      Object.keys(bP).forEach(function(k){bP[k].setAttribute('aria-pressed',String(state.pats.indexOf(k)>-1))});
+      Object.keys(bG).forEach(function(k){bG[k].setAttribute('aria-pressed',String(state.glaze===k))});
+      var pi=-1; PRESETS.forEach(function(p,i){var on=same(p.d,state);bPr[i].setAttribute('aria-pressed',String(on));if(on)pi=i});
+      var pats=ORDER.filter(function(k){return state.pats.indexOf(k)>-1}).map(function(k){return L(PATS[k])});
+      var en=lang()==='en';
+      var name=(pi>-1?L(PRESETS[pi])+' · ':'')+L(SHAPES[state.shape])+' · '+(pats.length?pats.join(' + '):(en?'plain':'เรียบ'))+' · '+L(GLAZES[state.glaze]);
+      elN.textContent=name;
+      var real=document.getElementById('m-real'), ri=document.getElementById('m-real-img');
+      if(pi>-1){ if(ri.getAttribute('src')!==PRESETS[pi].img){real.classList.remove('on');void real.offsetWidth;ri.src=PRESETS[pi].img} real.classList.add('on'); }
+      else real.classList.remove('on');
+      prev.setAttribute('aria-label',(en?'Magnet preview: ':'ตัวอย่างแม่เหล็ก: ')+name);
+    }
+    document.getElementById('m-random').addEventListener('click',function(){
+      var ks=Object.keys(SHAPES), ps=Object.keys(PATS), gs=Object.keys(GLAZES);
+      var pick=ps.filter(function(){return Math.random()<.4}); if(!pick.length) pick=[ps[Math.floor(Math.random()*ps.length)]];
+      state={shape:ks[Math.floor(Math.random()*ks.length)],pats:pick,glaze:gs[Math.floor(Math.random()*gs.length)]};
+      render(true);
+    });
+    window.__mRender=function(){render(false)};
+    render(false);
+  })();
+
+  /* ---------- cup coverflow ---------- */
+  var CUPS=[
+    {th:{n:'Cloud Wave Cup',s:'ขอบหยักเป็นคลื่นเมฆ',d:'ถ้วยทรงลึก ขอบหยักพลิ้วเหมือนคลื่นเมฆ มังกรนูนพันรอบถ้วย จุไอติมได้สองสามสกู๊ป เหมาะเป็นใบแรกของคอลเลกชัน'},
+         en:{n:'Cloud Wave Cup',s:'A rim that rolls like clouds',d:'A deep bowl with a rippling, cloud-wave rim and a relief dragon all the way round. Holds two or three scoops. A good first piece for the set.'}},
+    {th:{n:'Dragon Curve Cup',s:'ทรงเรือโค้งยาว',d:'ทรงยาวโค้งเหมือนเรือ มังกรเลื้อยไปตามลำถ้วย ใส่ไอติมคู่กับท็อปปิ้ง หรือใช้เป็นถ้วยขนมหวานที่บ้านต่อได้'},
+         en:{n:'Dragon Curve Cup',s:'A long, boat-like curve',d:'A long curved bowl like a boat, with the dragon gliding along its side. Made for scoops and toppings, and a dessert bowl at home afterwards.'}},
+    {th:{n:'Lotus Aura Cup',s:'ทรงกลีบบัวบาน',d:'กลีบบัวบานซ้อนรอบถ้วย มีมังกรอยู่กลางกลีบ ผสมสัญลักษณ์มงคลของไทยกับจีนไว้ในใบเดียว เป็นใบที่ตั้งโชว์สวยที่สุด'},
+         en:{n:'Lotus Aura Cup',s:'Petals in full bloom',d:'Layered lotus petals open around the bowl with a dragon among them, joining a Thai and a Chinese symbol of good fortune. The showpiece of the set.'}},
+    {th:{n:'Sky Cloud Cup',s:'มีขาตั้งและหูจับรูปเมฆ',d:'ถ้วยมีขาแบบถ้วยไอติมคลาสสิก หูจับเป็นก้อนเมฆ ถือถ่ายรูปสวย และใช้เป็นถ้วยขนมหรือถ้วยของหวานได้ทุกวัน'},
+         en:{n:'Sky Cloud Cup',s:'Footed, with a cloud handle',d:'A footed sundae cup with a cloud-shaped handle. Great in photos, and easy to use for desserts every day.'}},
+    {th:{n:'Handle Box',s:'กล่องหิ้วลายมังกร ใช้ซ้ำได้',d:'กล่องหิ้วสำหรับพาถ้วยกลับบ้านอย่างปลอดภัย หูหิ้วเป็นหัวมังกร ออกแบบให้เก็บไว้ใช้ซ้ำ ไม่ใช่แพ็กเกจทิ้งขว้าง'},
+         en:{n:'Handle Box',s:'A reusable dragon carry box',d:'A carry box to get your cup home safely, with a dragon-head handle. Designed to be kept and reused, not thrown away.'}}
+  ];
+  var cf=document.getElementById('cf'); if(!cf) return;
+  var items=[].slice.call(cf.querySelectorAll('.cf-item'));
+  var dots=document.getElementById('cf-dots'), info=document.getElementById('cf-info');
+  var n=items.length, cur=0;
+  items.forEach(function(it,i){
+    var b=document.createElement('button'); b.type='button';
+    b.addEventListener('click',function(){go(i)});
+    dots.appendChild(b);
+    it.addEventListener('click',function(){if(i!==cur) go(i)});
+  });
+  function layout(){
+    var w=cf.clientWidth, narrow=w<560;
+    var step=narrow?.62:.68, rot=narrow?32:24;
+    items.forEach(function(it,i){
+      var o=i-cur; if(o>n/2) o-=n; if(o<-n/2) o+=n;
+      var a=Math.abs(o);
+      var tx=o*it.offsetWidth*step;
+      it.style.transform='translateX(calc(-50% + '+tx+'px)) translateZ('+(-a*180)+'px) rotateY('+(-o*rot)+'deg) scale('+(1-a*.08)+')';
+      it.style.opacity=a>2?0:(a===2?.35:(a===1?.85:1));
+      it.style.filter=a?'brightness(.62) saturate(.8)':'none';
+      it.style.zIndex=10-a;
+      it.style.pointerEvents=a>1?'none':'auto';
+      it.classList.toggle('is-active',a===0);
+      it.setAttribute('aria-hidden',String(a!==0));
+    });
+    [].forEach.call(dots.children,function(d,i){
+      d.setAttribute('aria-current',String(i===cur));
+      d.setAttribute('aria-label',CUPS[i][lang()].n);
+    });
+  }
+  function renderInfo(quiet){
+    var c=CUPS[cur][lang()];
+    info.innerHTML='<span class="count">'+String(cur+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><h4></h4><span class="shape"></span><p></p>';
+    info.querySelector('h4').textContent=c.n;
+    info.querySelector('.shape').textContent=c.s;
+    info.querySelector('p').textContent=c.d;
+    if(!quiet){info.classList.remove('swap');void info.offsetWidth;info.classList.add('swap')}
+  }
+  function go(i){
+    cur=(i+n)%n;
+    items.forEach(function(it){it.classList.remove('is-active')});
+    void cf.offsetWidth;
+    layout(); renderInfo();
+  }
+  window.__cfRender=function(quiet){layout();renderInfo(quiet)};
+  document.querySelectorAll('.cf-btn').forEach(function(b){
+    b.addEventListener('click',function(){go(cur+Number(b.getAttribute('data-dir')))});
+  });
+  cf.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}
+    if(e.key==='ArrowRight'){e.preventDefault();go(cur+1)}
+  });
+  /* swipe / drag */
+  var sx=null, sy=null, moved=false;
+  cf.addEventListener('pointerdown',function(e){sx=e.clientX;sy=e.clientY;moved=false});
+  cf.addEventListener('pointermove',function(e){if(sx!==null&&Math.abs(e.clientX-sx)>8) moved=true});
+  function end(e){
+    if(sx===null) return;
+    var dx=e.clientX-sx, dy=e.clientY-sy; sx=null;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)) go(cur+(dx<0?1:-1));
+  }
+  cf.addEventListener('pointerup',end);
+  cf.addEventListener('pointercancel',function(){sx=null});
+  cf.addEventListener('click',function(e){if(moved){e.stopPropagation();moved=false}},true);
+  window.addEventListener('resize',layout);
+  layout(); renderInfo(true);
+})();
+</script>
+</body>
+</html>
